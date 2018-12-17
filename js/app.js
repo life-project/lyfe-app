@@ -31,11 +31,11 @@ function Player (name){
 Player.allPlayer=[];
 
 function questionFunc(){
-  
-    document.getElementById('question').textContent = Question.allQuestions[i].prompt;
-    document.getElementById('description').texContent = Question.allQuestions[i].description;
-    document.getElementById('input1').textContent = Question.allQuestions[i].button1;
-    document.getElementById('input2').textContent = Question.allQuestions[i].button2;
+  console.log(i);
+  document.getElementById('question').textContent = Question.allQuestions[i].prompt;
+  document.getElementById('description').texContent = Question.allQuestions[i].description;
+  document.getElementById('input1').textContent = Question.allQuestions[i].button1;
+  document.getElementById('input2').textContent = Question.allQuestions[i].button2;
     
      
 }
@@ -48,18 +48,25 @@ function payday(){
 }
 
 
-function startChoice1(){
-  i++;
+function startChoice1(event){
+  
   alert('1');
+  i++;
+  console.log(i);
   questionFunc();
   
 }
-function startChoice2(){
-  i++;
+function startChoice2(event){
+  
   alert('2');
+   i++;
   questionFunc();
+ 
 }
+
 questionFunc();
+// i++;
+// questionFunc();
 
 newButton1Element.addEventListener('click',startChoice1);
 newButton2Element.addEventListener('click',startChoice2);
