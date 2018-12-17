@@ -3,12 +3,16 @@ var promptElement = document.getElementById('form');
 // var newQuestionElement = document.getElementById('question').textContent;
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
+var newNameElement = document.getElementById('name-status');
+var newAgeElement = document.getElementById('age-status');
+var newMoneyElement = document.getElementById('money-status');
+var newLiabilitiesElement = document.getElementById('liabilities');
 var questionIndicator = 0;
 var i=0;
 
-function Question (prompt,discription,button1,button2){
+function Question (prompt,description,button1,button2){
   this.prompt= prompt;
-  this.discription= discription;
+  this.description= description;
   this.button1=button1;
   this.button2=button2;
   Question.allQuestions.push(this);
@@ -33,7 +37,7 @@ Player.allPlayer=[];
 function questionFunc(){
   console.log(i);
   document.getElementById('question').textContent = Question.allQuestions[i].prompt;
-  document.getElementById('description').texContent = Question.allQuestions[i].description;
+  document.getElementById('description').textContent = Question.allQuestions[i].description;
   document.getElementById('input1').textContent = Question.allQuestions[i].button1;
   document.getElementById('input2').textContent = Question.allQuestions[i].button2;
     
@@ -42,10 +46,15 @@ function questionFunc(){
 function randomEvent(){
 
 }
-
-function payday(){
-  player.savings += player.salary;
+function updateStatus(){
+  document.getElementById('name-status').textContent = Player[0].name;
+  document.getElementById('age-status').textContent = Player[0].age;
+  document.getElementById('money-status').textContent = Player[0].savings;
 }
+
+// Player.prototype.payday(){
+//   this.savings += this.salary;
+// }
 
 
 function startChoice1(event){
