@@ -95,23 +95,22 @@ function liabilitiesFunc(){
 
 function pictureLogic(){
   if(i===0){
-    if (Player.education) educationImageElement.src='images/graduation.png';
-    if (!Player.education) educationImageElement.src='images/graduationx.png';
+    if (Player.education===true) educationImageElement.src='images/graduation.png';
+    if (Player.education===false) educationImageElement.src='images/graduationx.png';
   }
-  if(i===2 || i===1){
-    if(Player.car){
-      if(Player.newcar)carImageElement.src ='images/newcar.png';
-      if(!Player.newcar)carImageElement.src = 'images/oldcar.png';
-    } else{
+  if(i===1){
+    if(Player.car===false){
       carImageElement.src= 'images/newcarx.png';
     }
-
+    if (i===2){
+      if(Player.newcar===true)carImageElement.src ='images/newcar.png';
+      if(Player.newcar===false)carImageElement.src = 'images/oldcar.png';
+    }
     
+
+
   }
 
-  // if(Player.education) console.log('2');
-  // if(Player.kids) console.log('3');
-  // if( )
 }
 
 function showEvents (){
@@ -143,11 +142,11 @@ function payday(){
 
 }
 function logic(){
-  pictureLogic();
+
   if (i===0){
     Player.age+=4;
     if(choice===1){
-      Player.education= true;
+      Player.education=true;
       liabilitiesFunc();
     }
     else{
@@ -157,20 +156,20 @@ function logic(){
     }
   }
   if (i===1){
+    if(choice===1)Player.car=true;
+  }
+  if (i===2){
     if(choice===1){
-      Player.car=true;
-    
-    }else{
-      // i++;
-    }
+      Player.newcar=true;
+   }
   }
-  if (i >1){
-  }
+
+  pictureLogic();
 }
 function startChoice1(event){
   choice=1;
   logic();
-  
+
   if(i===1){
     // alert(i);
     i++;
@@ -179,7 +178,7 @@ function startChoice1(event){
     randomEventRender();
   }
   i++;
-  ;
+
 }
 
 function startChoice2(event){
