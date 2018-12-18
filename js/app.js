@@ -1,9 +1,9 @@
 `use strict`;
-var promptElement = document.getElementById('question-promt');
-// var newQuestionElement = document.getElementById('question').textContent;
+var promptElement = document.getElementById('question-prompt');
+var eventPrompt = document.getElementById('event-prompt').textContent;
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
-// var newNameElement = document.getElementById('name-status');
+var nameElement = document.getElementById('name');
 // var newAgeElement = document.getElementById('age-status');
 var carImageElement = document.getElementById('second-ti');
 var newLiabilitiesElement = document.getElementById('liabilities');
@@ -43,7 +43,7 @@ function randomNumber(){
 }
 
 var Player = {
-  name:'tim' ,
+  name:nameElement,
   age : 18,
   job : null,
   salary : 1000,
@@ -61,6 +61,7 @@ function questionFunc(){
   updateStatus();
 
 }
+
 function randomEvent(){
  
 }
@@ -97,6 +98,20 @@ function pictureLogic(){
 
 }
 
+function showEvents (){
+  promptElement.className='hide';
+  eventPrompt.className='show';
+}
+function showQuestions(){
+  promptElement.className='show';
+  eventPrompt.className='hide';
+}
+function checkforName(){
+  while(!Player.name){
+    Player.name= prompt('Please enter your name :');
+  }
+}
+
 
 
 function payday(){
@@ -108,6 +123,7 @@ function logic(){
   if (i===0){
     Player.age+=4;
     if(choice===1){
+      Player.education= true;
       liabilitiesFunc();
     }
     else{
@@ -123,9 +139,8 @@ function logic(){
       i++;
     }
   }
-  if (i >1){  
-    promptElement.className='hide';
-}
+  if (i >1){   
+  }
 }
 function startChoice1(event){
   choice=1;
@@ -139,7 +154,7 @@ function startChoice2(event){
   i++;
   questionFunc();
 }
-
+checkforName();
 questionFunc();
 // i++;
 // questionFunc();
