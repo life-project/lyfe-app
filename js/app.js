@@ -1,12 +1,14 @@
-`use strict`;
+'use strict';
 var promptElement = document.getElementById('question-prompt');
 var eventPrompt = document.getElementById('event-prompt');
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
+var newButton3Element = document.getElementById('input3');
 var nameElement = document.getElementById('name');
 // var newAgeElement = document.getElementById('age-status');
 var carImageElement = document.getElementById('second-ti');
 var newLiabilitiesElement = document.getElementById('liabilities');
+var button3Flag=false;
 
 var i=0;
 var choice = 0;
@@ -29,9 +31,10 @@ new Question('How do you feel about kids', ' ', 'I want one now', 'Not for me');
 
 var randomEventPrompt = [['You won the Lotto','You gained 50,000... PLAY THE MEGA for bigger prizes!'],
   ['Congrats, you have a kid.',' This will cost you $25000 a year'],
-  ['You got an inheirtance.', ' Sorry for your loss but you gained $40,0000'],
+  ['You got an inheirtance.', ' Sorry for your loss but you gained $40,000'],
   [ 'You got suied.','This will cost you $35,000!'],
   ['You were made famous on You-Tube!', 'You gained $10,000.'],
+  ['You got a promotion.',' You will make an addition $5,000'],
 ];
 
 
@@ -51,7 +54,9 @@ var Player = {
 };
 
 function questionFunc(){
+  // alert('question func');
   console.log(i);
+  showQuestions();
   document.getElementById('question').textContent = Question.allQuestions[i].prompt;
   document.getElementById('description').textContent = Question.allQuestions[i].description;
   document.getElementById('input1').textContent = Question.allQuestions[i].button1;
@@ -62,19 +67,20 @@ function questionFunc(){
 
 function randomEventRender(){
   var randomIndex = randomNumber();
-
+  showEvents();
   document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
   document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
   document.getElementById('input3').textContent = 'OK!';
   updateStatus();
-
+  
 }
- 
+
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
   document.getElementById('age-status').textContent = ('Age: '+ Player.age);
   document.getElementById('money-status').textContent = ('Savings: $' + Player.savings);
 }
+
 function liabilitiesFunc(){
   if(i===0){
     var liElement =document.createElement('li');
@@ -82,6 +88,7 @@ function liabilitiesFunc(){
     newLiabilitiesElement.appendChild(liElement);
   }
 }
+
 function pictureLogic(){
   if(i===0 ){
     if(choice===1){
@@ -100,7 +107,6 @@ function pictureLogic(){
   if (i===2 && choice===2){
     carImageElement.src ='images/car.jpg';
   }
-
 }
 
 function showEvents (){
@@ -120,8 +126,15 @@ function checkforName(){
 }
 
 function payday(){
+  showEvents();
+  console.log('payday');
+  document.getElementById('event').textContent = 'Your Got Paid';
+  document.getElementById('event-description').textContent = ' ';
+  document.getElementById('input3').textContent = 'OK!';
   Player.savings += Player.salary;
   updateStatus();
+  // questionFunc();
+
 }
 function logic(){
   pictureLogic();
@@ -151,16 +164,34 @@ function startChoice1(event){
   choice=1;
   logic();
   i++;
-  questionFunc();
+  randomEventRender();
 }
+
 function startChoice2(event){
   choice=2;
   logic();
   i++;
-  questionFunc();
+  randomEventRender();
 }
+
+function button3logic(){
+  console.log(button3Flag);
+
+  if(button3Flag===false){
+    payday();
+    button3Flag=true;  
+  }else{
+    button3Flag=false;
+    questionFunc();
+  }
+}
+function startChoice3(event){
+  button3logic();
+  
+}
+
 checkforName();
-showEvents();
+// showEvents();
 randomEventRender();
 questionFunc();
 // i++;
@@ -168,3 +199,4 @@ questionFunc();
 
 newButton1Element.addEventListener('click',startChoice1);
 newButton2Element.addEventListener('click',startChoice2);
+newButton3Element.addEventListener('click',startChoice3);
