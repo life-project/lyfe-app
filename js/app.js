@@ -7,6 +7,9 @@ var newButton3Element = document.getElementById('input3');
 var nameElement = document.getElementById('name');
 // var newAgeElement = document.getElementById('age-status');
 var carImageElement = document.getElementById('second-ti');
+var educationImageElement = document.getElementById('first-ti');
+var kidImageElement = document.getElementById('third-ti');
+
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag=false;
 
@@ -51,6 +54,7 @@ var Player = {
   education:false,
   savings :10000,
   car:false,
+  newcar:false,
 };
 
 function questionFunc(){
@@ -72,7 +76,7 @@ function randomEventRender(){
   document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
   document.getElementById('input3').textContent = 'OK!';
   updateStatus();
-  
+
 }
 
 function updateStatus(){
@@ -90,23 +94,24 @@ function liabilitiesFunc(){
 }
 
 function pictureLogic(){
-  if(i===0 ){
-    if(choice===1){
-
-    //update school image
-    }else{
-      //not school image
+  if(i===0){
+    if (Player.education) educationImageElement.src='images/graduation.png';
+    if (!Player.education) educationImageElement.src='images/graduationx.png';
+  }
+  if(i===2 || i===1){
+    if(Player.car){
+      if(Player.newcar)carImageElement.src ='images/newcar.png';
+      if(!Player.newcar)carImageElement.src = 'images/oldcar.png';
+    } else{
+      carImageElement.src= 'images/newcarx.png';
     }
+
+    
   }
-  if(i===1 &&choice===2){
-    //Not car image
-  }
-  if (i===2 && choice===1){
-    carImageElement.src ='images/car.jpg';
-  }
-  if (i===2 && choice===2){
-    carImageElement.src ='images/car.jpg';
-  }
+
+  // if(Player.education) console.log('2');
+  // if(Player.kids) console.log('3');
+  // if( )
 }
 
 function showEvents (){
@@ -129,9 +134,10 @@ function payday(){
   showEvents();
   console.log('payday');
   document.getElementById('event').textContent = 'Your Got Paid';
-  document.getElementById('event-description').textContent = ' ';
+  document.getElementById('event-description').textContent = ' This is 2 year income ';
   document.getElementById('input3').textContent = 'OK!';
   Player.savings += Player.salary;
+  Player.age+=2;
   updateStatus();
   // questionFunc();
 
@@ -153,8 +159,9 @@ function logic(){
   if (i===1){
     if(choice===1){
       Player.car=true;
+    
     }else{
-      i++;
+      // i++;
     }
   }
   if (i >1){
@@ -163,8 +170,16 @@ function logic(){
 function startChoice1(event){
   choice=1;
   logic();
+  
+  if(i===1){
+    // alert(i);
+    i++;
+    questionFunc();
+  } else{
+    randomEventRender();
+  }
   i++;
-  randomEventRender();
+  ;
 }
 
 function startChoice2(event){
@@ -174,20 +189,15 @@ function startChoice2(event){
   randomEventRender();
 }
 
-function button3logic(){
+function startChoice3(event){
   console.log(button3Flag);
-
   if(button3Flag===false){
     payday();
-    button3Flag=true;  
+    button3Flag=true;
   }else{
     button3Flag=false;
     questionFunc();
   }
-}
-function startChoice3(event){
-  button3logic();
-  
 }
 
 checkforName();
