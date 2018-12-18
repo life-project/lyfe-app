@@ -1,11 +1,11 @@
 `use strict`;
-var promptElement = document.getElementById('form');
+var promptElement = document.getElementById('question-promt');
 // var newQuestionElement = document.getElementById('question').textContent;
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 // var newNameElement = document.getElementById('name-status');
 // var newAgeElement = document.getElementById('age-status');
-// var newMoneyElement = document.getElementById('money-status');
+var carImageElement = document.getElementById('second-ti');
 var newLiabilitiesElement = document.getElementById('liabilities');
 var questionIndicator = 0;
 var i=0;
@@ -27,6 +27,20 @@ new Question('Do you want to get married?', '', 'Yes','No');
 new Question('Do you want to buy a house?','House cost a lot of money', 'Yes I don\'t want to rent forever', 'No I prefer wasting my money');
 new Question('How do you feel about kids', ' ', 'I want one now', 'Not for me');
 
+var randomEventPrompt = [ 
+  ['You won the Lotto',  'You gained 50,000... PLAY THE MEGA for bigger prizes!',]
+  ['Congrats, you have a kid.',' This will cost you 25000 a year'],
+  ['You got an inheirtance.', ' Sorry for your loss but you gained $40,0000'],
+ [ 'You got suied.',
+  'You were made famous on You-Tube,'
+ ]
+]
+
+
+
+function randomNumber(){
+  return Math.round(Math.random()*6);
+}
 
 var Player = {
   name:'tim' ,
@@ -48,7 +62,7 @@ function questionFunc(){
 
 }
 function randomEvent(){
-
+ 
 }
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
@@ -65,6 +79,7 @@ function liabilitiesFunc(){
 function pictureLogic(){
   if(i===0 ){
     if(choice===1){
+
     //update school image
     }else{
       //not school image
@@ -74,13 +89,14 @@ function pictureLogic(){
     //Not car image
   }
   if (i===2 && choice===1){
-    //new car image
+    carImageElement.src ='images/car.jpg';
   }
   if (i===2 && choice===2){
-    //used car image
+    carImageElement.src ='images/car.jpg';
   }
-  
+
 }
+
 
 
 function payday(){
@@ -88,6 +104,7 @@ function payday(){
   updateStatus();
 }
 function logic(){
+  pictureLogic();
   if (i===0){
     Player.age+=4;
     if(choice===1){
@@ -106,8 +123,10 @@ function logic(){
       i++;
     }
   }
+  if (i >1){  
+    promptElement.className='hide';
 }
-
+}
 function startChoice1(event){
   choice=1;
   logic();
