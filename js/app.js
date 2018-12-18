@@ -1,6 +1,6 @@
 `use strict`;
 var promptElement = document.getElementById('question-prompt');
-var eventPrompt = document.getElementById('event-prompt').textContent;
+var eventPrompt = document.getElementById('event-prompt');
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 var nameElement = document.getElementById('name');
@@ -27,18 +27,17 @@ new Question('Do you want to get married?', '', 'Yes','No');
 new Question('Do you want to buy a house?','House cost a lot of money', 'Yes I don\'t want to rent forever', 'No I prefer wasting my money');
 new Question('How do you feel about kids', ' ', 'I want one now', 'Not for me');
 
-var randomEventPrompt = [ 
-  ['You won the Lotto',  'You gained 50,000... PLAY THE MEGA for bigger prizes!',]
+var randomEventPrompt = [['You won the Lotto','You gained 50,000... PLAY THE MEGA for bigger prizes!'],
   ['Congrats, you have a kid.',' This will cost you $25000 a year'],
   ['You got an inheirtance.', ' Sorry for your loss but you gained $40,0000'],
   [ 'You got suied.','This will cost you $35,000!'],
-  ['You were made famous on You-Tube!', 'You gained $10,000.']
-]
+  ['You were made famous on You-Tube!', 'You gained $10,000.'],
+];
 
 
 
 function randomNumber(){
-  return Math.round(Math.random()*randomEventPrompt.length);
+  return Math.floor(Math.random()*(randomEventPrompt.length));
 }
 
 var Player = {
@@ -51,7 +50,7 @@ var Player = {
   car:false,
 };
 
-function questionEvent(){
+function questionFunc(){
   console.log(i);
   document.getElementById('question').textContent = Question.allQuestions[i].prompt;
   document.getElementById('description').textContent = Question.allQuestions[i].description;
@@ -63,14 +62,13 @@ function questionEvent(){
 
 function randomEventRender(){
   var randomIndex = randomNumber();
-  document.getElementById('question').textContent = randomEventPrompt[randomIndex].0;
-  document.getElementById('description').textContent = randomEventPrompt[randomIndex].1;
-  document.getElementById('input1').textContent = 'OK!';
+  document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
+  document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
+  document.getElementById('input3').textContent = 'OK!';
   updateStatus();
 
 }
  
-}
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
   document.getElementById('age-status').textContent = ('Age: '+ Player.age);
@@ -116,10 +114,9 @@ function checkforName(){
   Player.name = localStorage.getItem('username');
   while(!Player.name){
     Player.name= prompt('Please enter your name :');
+    localStorage.setItem('username', Player.name);
   }
 }
-
-
 
 function payday(){
   Player.savings += Player.salary;
@@ -146,7 +143,7 @@ function logic(){
       i++;
     }
   }
-  if (i >1){   
+  if (i >1){
   }
 }
 function startChoice1(event){
@@ -162,6 +159,8 @@ function startChoice2(event){
   questionFunc();
 }
 checkforName();
+showEvents();
+randomEventRender();
 questionFunc();
 // i++;
 // questionFunc();
