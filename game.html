@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/games.css"/>
   </head>
   <body>
     <header>
      <nav>
-      <img src="https://nebraskabrewingco.com/wp-content/uploads/2016/11/OR-Trail-tap-handle.png" alt="placeholder">
+      <img src="images/logo.png" alt="logo">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="game.html">Play</a></li>
@@ -18,36 +19,48 @@
       </nav>
     </header>
     <main>
-      <section id="status">
-        <h2 id="name-status"></h2>
-        <p id="age-status"></p>
-        <p id="car-status"></p>
-        <p></p>
-        <p></p>
-        <p id="money-status"></p>
-      </section>
-      <section id="liabilities" >
-        <h2>Liabilities</h2>
-        <ul>
-        </ul>
-      </section>
-      <section id="timeline-images">
-        <img id="first-ti" src="" alt=""/>
-        <img id="second-ti" src="" alt=""/>
-        <img id="third-ti" src="" alt=""/>
-        <img id="fouth-ti" src="" alt=""/>
-      </section>
-      <section id="question-prompt" class="show">
-        <h2 id="question"></h2>
-        <p id="description"></p>
-        <button id="input1"></button>
-        <button id="input2"></button>
-      </section>
-      <section id="event-prompt" class="hide">
-        <h2 id="event"></h2>
-        <p id="event-description"></p>
-        <button id="input3"></button>
-      </section>
+      <div id="game-area">
+
+        <div id="status-area">
+            <section id="status">
+                <h2 id="name-status"></h2>
+                <p id="age-status"></p>
+                <p id="car-status"></p>
+                <p></p>
+                <p></p>
+                <p id="money-status"></p>
+              </section>
+        </div>
+
+         <section id="liabilities" >
+              <h2>Liabilities</h2>
+              <ul>
+              </ul>
+            </section>
+        <div id="timeline-area">
+            <section id="timeline-images">
+              <img id="first-ti" src="" alt=""/>
+              <img id="second-ti" src="" alt=""/>
+              <img id="third-ti" src="" alt=""/>
+              <img id="fouth-ti" src="" alt=""/>
+           </section>
+        </div>
+          
+        <div id="question-area">
+            <section id="question-prompt" class="show">
+                <h2 id="question"></h2>
+                <p id="description"></p>
+                <button id="input1"></button>
+                <button id="input2"></button>
+              </section>
+              <section id="event-prompt" class="hide">
+                <h2 id="event"></h2>
+                <p id="event-description"></p>
+                <button id="input3"></button>
+              </section>
+        </div>
+      </div>
+      
     </main>
     <footer>
       <p>2018</p>
