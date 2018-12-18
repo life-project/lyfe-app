@@ -1,0 +1,9 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: monospace, sans-serif;
+    margin: 0 auto;
+    vertical-align: middle;
+    background-color: black;
+    display: inline-block;
+    }
