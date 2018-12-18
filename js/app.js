@@ -7,7 +7,7 @@ var nameElement = document.getElementById('name');
 // var newAgeElement = document.getElementById('age-status');
 var carImageElement = document.getElementById('second-ti');
 var newLiabilitiesElement = document.getElementById('liabilities');
-var questionIndicator = 0;
+
 var i=0;
 var choice = 0;
 
@@ -29,17 +29,16 @@ new Question('How do you feel about kids', ' ', 'I want one now', 'Not for me');
 
 var randomEventPrompt = [ 
   ['You won the Lotto',  'You gained 50,000... PLAY THE MEGA for bigger prizes!',]
-  ['Congrats, you have a kid.',' This will cost you 25000 a year'],
+  ['Congrats, you have a kid.',' This will cost you $25000 a year'],
   ['You got an inheirtance.', ' Sorry for your loss but you gained $40,0000'],
- [ 'You got suied.',
-  'You were made famous on You-Tube,'
- ]
+  [ 'You got suied.','This will cost you $35,000!'],
+  ['You were made famous on You-Tube!', 'You gained $10,000.']
 ]
 
 
 
 function randomNumber(){
-  return Math.round(Math.random()*6);
+  return Math.round(Math.random()*randomEventPrompt.length);
 }
 
 var Player = {
@@ -52,7 +51,7 @@ var Player = {
   car:false,
 };
 
-function questionFunc(){
+function questionEvent(){
   console.log(i);
   document.getElementById('question').textContent = Question.allQuestions[i].prompt;
   document.getElementById('description').textContent = Question.allQuestions[i].description;
@@ -62,7 +61,14 @@ function questionFunc(){
 
 }
 
-function randomEvent(){
+function randomEventRender(){
+  var randomIndex = randomNumber();
+  document.getElementById('question').textContent = randomEventPrompt[randomIndex].0;
+  document.getElementById('description').textContent = randomEventPrompt[randomIndex].1;
+  document.getElementById('input1').textContent = 'OK!';
+  updateStatus();
+
+}
  
 }
 function updateStatus(){
@@ -107,6 +113,7 @@ function showQuestions(){
   eventPrompt.className='hide';
 }
 function checkforName(){
+  Player.name = localStorage.getItem('username');
   while(!Player.name){
     Player.name= prompt('Please enter your name :');
   }
