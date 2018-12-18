@@ -51,7 +51,7 @@ var Player = {
   car:false,
 };
 
-function questionEvent(){
+function questionFunc(){
   console.log(i);
   document.getElementById('question').textContent = Question.allQuestions[i].prompt;
   document.getElementById('description').textContent = Question.allQuestions[i].description;
@@ -63,14 +63,13 @@ function questionEvent(){
 
 function randomEventRender(){
   var randomIndex = randomNumber();
-  document.getElementById('question').textContent = randomEventPrompt[randomIndex].0;
-  document.getElementById('description').textContent = randomEventPrompt[randomIndex].1;
+  document.getElementById('question').textContent = randomEventPrompt[randomIndex][0];
+  document.getElementById('description').textContent = randomEventPrompt[randomIndex][1];
   document.getElementById('input1').textContent = 'OK!';
   updateStatus();
 
 }
  
-}
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
   document.getElementById('age-status').textContent = ('Age: '+ Player.age);
