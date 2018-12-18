@@ -1,7 +1,8 @@
-.show{
-  display:inline-block;
 
+.hide {
+  display: none;
 }
-.hide{
-  display:none;
+
+.show {
+  display: inline-block;
 }
