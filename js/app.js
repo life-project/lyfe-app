@@ -62,6 +62,7 @@ function questionFunc(){
 
 function randomEventRender(){
   var randomIndex = randomNumber();
+
   document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
   document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
   document.getElementById('input3').textContent = 'OK!';
