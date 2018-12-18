@@ -1,11 +1,14 @@
 `use strict`;
 
 var nameSubmit = document.getElementById('home-form');
-var name;
+var nameInput;
 
 function addName(event){
- localStorage.setItem('user-name', event.target.username.value);
+  event.preventDefault();
+  nameInput=event.target.username.value;
+  console.log('name input:'+nameInput);
+ localStorage.setItem('username', nameInput);
 }
 
 
-nameSubmit.addEventListener('submit',addName)
+nameSubmit.addEventListener('submit', addName);
