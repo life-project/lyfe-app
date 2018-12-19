@@ -188,13 +188,13 @@ function pictureLogic(){
   }
   if(Player.kidsNumber>0)kidImageElement.src='images/baby.png';
   if(i === 5 && Player.kids===false)kidImageElement.src='images/babyx.png';
-  if(i===4){ 
+  if(i===4){
     if(Player.house===true)houseImageElement.src='images/house.png';
     if(Player.house===false)houseImageElement.src='images/housex.png';
   }
   if(i===3){
-    if(Player.marriage===true)marriageImageElement.src='images/house.png';
-    if(Player.marriage===false)marriageImageElement.src='images/housex.png'
+    if(Player.marriage===true)marriageImageElement.src='images/ring.png';
+    if(Player.marriage===false)marriageImageElement.src='images/ringx.png';
   }
 }
 
@@ -223,7 +223,6 @@ function checkforName(){
   while(!Player.name){
     Player.name = prompt('Please enter your name :');
     localStorage.setItem('username', Player.name);
-  
   }
 }
 
