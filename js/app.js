@@ -128,9 +128,9 @@ function pictureLogic(){
     if (!Player.education) educationImageElement.src='images/graduationx.png';
   }
   if(i>=1){
-    if(!Player.car)carImageElement.src= 'images/newcarx.png';
-    if(Player.car && !Player.newcar)carImageElement.src ='images/oldcar.png';
-    if(Player.car && Player.newcar)carImageElement.src ='images/newcar.png';
+    if(Player.car===false)carImageElement.src= 'images/newcarx.png';
+    if(Player.car===true && Player.newcar===false)carImageElement.src ='images/oldcar.png';
+    if(Player.car===true && Player.newcar===true)carImageElement.src ='images/newcar.png';
   }
 }
 
@@ -177,9 +177,7 @@ function logic(){
       }
     }
   }
-  if (i===1){
-    if(choice===1)Player.car=true;
-  }
+
   if (i===2){
     if(choice===1){
       Player.newcar=true;
@@ -189,9 +187,10 @@ function logic(){
   if(i!==1)pictureLogic();
   if(i===1 && Player.car===false)pictureLogic();
 }
-function startChoice1(event){ 
+function startChoice1(event){
   choice=1;
-   if(i===1){
+  if(i===1){
+    Player.car=true;
     i++;
     questionFunc();
   }else{
