@@ -6,11 +6,11 @@ html, body {
     vertical-align: middle;
     background-color: black;
     display: inline-block;
-    background-color: rgb(255, 166, 0);
+    background-color: rgb(253, 253, 253);
 }
 
 #game-area {
-    border: solid 5px greenyellow;
+    border: solid 5px rgb(0, 173, 0);
     margin: 20px;
     background-color: black;
   }
