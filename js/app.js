@@ -198,6 +198,8 @@ function pictureLogic(){
   }
 }
 
+// this can be deleted
+
 function showEvents(){
   promptElement.className = 'hide';
   eventPrompt.className = 'show';
