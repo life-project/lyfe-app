@@ -10,6 +10,8 @@ var nameElement = document.getElementById('name');
 var carImageElement = document.getElementById('second-ti');
 var educationImageElement = document.getElementById('first-ti');
 var kidImageElement = document.getElementById('third-ti');
+var houseImageElement= document.getElementById('fourth-ti');
+var marriageImageElement= document.getElementById('fifth-ti');
 var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag = false;
@@ -56,7 +58,6 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
 var Player = {
   name: nameElement,
   age : 18,
-  job : null,
   salary : 50000,
   education : false,
   savings : 10000,
@@ -64,6 +65,8 @@ var Player = {
   newcar : false,
   kids : false,
   kidsNumber : 0,
+  house : false,
+  marriage : false,
 
 };
 
@@ -75,7 +78,7 @@ function questionFunc(){
     document.getElementById('input1').textContent = Question.allQuestions[i].button1;
     document.getElementById('input2').textContent = Question.allQuestions[i].button2;
     updateStatus();
-  }else{
+  } else{
     endGame();
   }
 
@@ -94,11 +97,11 @@ function randomLogic(){
     liElement =document.createElement('li');
     liElement.textContent = 'Kid: $13,000 /yr ';
     newLiabilitiesElement.appendChild(liElement);
-    Player.kids=true;
+    Player.kids = true;
     Player.kidsNumber++;
     Player.savings-= 13000;
   }
-  if (randomIndex===2){ //inheirtance
+  if (randomIndex===2){ //inheritance
     Player.savings+=40000;
   }
   if (randomIndex===3){ //lawsuit
@@ -117,8 +120,8 @@ function randomLogic(){
     Player.savings+=1000;
   }
   if (randomIndex===8){ // car
-    Player.car=true;
-    Player.newcar=true;
+    Player.car = true;
+    Player.newcar = true;
     carImageElement.src ='images/newcar.png';
   }
   if (randomIndex===9){ // casino bad day
@@ -130,27 +133,28 @@ function randomLogic(){
 }
 
 function randomEventRender(){
-  var randomNumberGen;
-  randomNumberGen=randomNumber();
 
-  if (Player.kids===false){
+  var randomNumberGen = randomNumber();
+
+
+  if (Player.kids===false || Player.age > 49){
     do {
       randomNumberGen = randomNumber();
     }
-    while( randomNumberGen>= 5 && randomNumberGen <15 );
+    while( randomNumberGen >= 3 && randomNumberGen < 43 );
   }
 
-  if(randomNumberGen>=0 && randomNumberGen <5 ) randomIndex=0;
-  if(randomNumberGen>=5 && randomNumberGen <15 ) randomIndex=1;
-  if(randomNumberGen>=15 && randomNumberGen <22 ) randomIndex=2;
-  if(randomNumberGen>=22 && randomNumberGen <30 ) randomIndex=3;
-  if(randomNumberGen>=30 && randomNumberGen <35 ) randomIndex=4;
-  if(randomNumberGen>=35 && randomNumberGen <47 ) randomIndex=5;
-  if(randomNumberGen>=47 && randomNumberGen < 52 )randomIndex=6;
-  if(randomNumberGen>=52 && randomNumberGen <64 ) randomIndex=7;
-  if(randomNumberGen>=64 && randomNumberGen <69 ) randomIndex=8;
-  if(randomNumberGen>=69 && randomNumberGen <81 ) randomIndex=9;
-  if(randomNumberGen>=81 && randomNumberGen <91 ) randomIndex=10;
+  if(randomNumberGen>=0 && randomNumberGen <3 ) randomIndex=0;
+  if(randomNumberGen>=3 && randomNumberGen <43 ) randomIndex=1;
+  if(randomNumberGen>=43 && randomNumberGen <46 ) randomIndex=2;
+  if(randomNumberGen>=46 && randomNumberGen <50 ) randomIndex=3;
+  if(randomNumberGen>=50 && randomNumberGen <53 ) randomIndex=4;
+  if(randomNumberGen>=53 && randomNumberGen <61 ) randomIndex=5;
+  if(randomNumberGen>=61 && randomNumberGen <67 )randomIndex=6;
+  if(randomNumberGen>=67 && randomNumberGen <77 ) randomIndex=7;
+  if(randomNumberGen>=77 && randomNumberGen <80 ) randomIndex=8;
+  if(randomNumberGen>=80 && randomNumberGen <90 ) randomIndex=9;
+  if(randomNumberGen>=90 && randomNumberGen <100 ) randomIndex=10;
 
   console.log(randomNumberGen);
   console.log(randomNumberGen);
@@ -167,6 +171,7 @@ function randomEventRender(){
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
   document.getElementById('age-status').textContent = ('Age: '+ Player.age);
+  document.getElementById('kid-status').textContent = ('Number of kids: ' + Player.kidsNumber);
   document.getElementById('money-status').textContent = ('Savings: $' + Player.savings);
 }
 
@@ -183,12 +188,21 @@ function pictureLogic(){
   }
   if(Player.kidsNumber>0)kidImageElement.src='images/baby.png';
   if(i === 5 && Player.kids===false)kidImageElement.src='images/babyx.png';
+  if(i===4){ 
+    if(Player.house===true)houseImageElement.src='images/house.png';
+    if(Player.house===false)houseImageElement.src='images/housex.png';
+  }
+  if(i===3){
+    if(Player.marriage===true)marriageImageElement.src='images/house.png';
+    if(Player.marriage===false)marriageImageElement.src='images/housex.png'
+  }
 }
+
 
 function showEvents(){
   promptElement.className = 'hide';
   eventPrompt.className = 'show';
-  endGamePrompt.className= 'hide';
+  endGamePrompt.className = 'hide';
 }
 
 function showQuestions(){
@@ -199,7 +213,7 @@ function showQuestions(){
 function endGame(){
   promptElement.className = 'hide';
   eventPrompt.className = 'hide';
-  endGamePrompt.className= 'show';
+  endGamePrompt.className = 'show';
 
 
 }
@@ -209,6 +223,7 @@ function checkforName(){
   while(!Player.name){
     Player.name = prompt('Please enter your name :');
     localStorage.setItem('username', Player.name);
+  
   }
 }
 
@@ -221,8 +236,6 @@ function payday(){
   Player.savings += Player.salary;
   Player.age+=1;
   updateStatus();
-  // questionFunc();
-
 }
 
 function logic(){
@@ -230,7 +243,7 @@ function logic(){
   if (i===0){
     Player.age+=4;
     if(choice===1){
-      Player.education=true;
+      Player.education = true;
       liElement = document.createElement('li');
       liElement.textContent = 'Student Loans: $80,000';
       newLiabilitiesElement.appendChild(liElement);
@@ -258,7 +271,7 @@ function logic(){
   if(i===3){ //Marriage
     Player.age+=1;
     if(choice===1){
-      Player.salary= Player.salary*1.6;
+      Player.salary = Player.salary*1.6;
     }
   }
   if(i===4){ //Mortgage
@@ -273,13 +286,13 @@ function logic(){
   if(i===5){ //kids
     Player.age+=1;
     if(choice===1){
-      Player.kids=true;
+      Player.kids = true;
     }
   }
   if (i===6){ //new job
     Player.age+=3;
     if(choice===1){
-      Player.salary= Player.salary*0.9;
+      Player.salary = Player.salary*0.9;
     }
   }
   if (i===7){ // laid off
@@ -290,14 +303,14 @@ function logic(){
       newLiabilitiesElement.appendChild(liElement);
     }
     if (choice===2){
-      Player.salary= Player.salary*0.5;
+      Player.salary = Player.salary*0.5;
     }
   }
   if (i===8){ //change job
     Player.age+=3;
     if (choice===1){
       Player.savings-=20000;
-      Player.salary=Player.salary*1.1;
+      Player.salary = Player.salary*1.1;
     }
   }
   if(i===9){ //nurse for mom
@@ -315,7 +328,10 @@ function logic(){
   if(i!==1)pictureLogic();
   if(i===1 && Player.car===false)pictureLogic();
 }
+
 function startChoice1(event){  //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice=1;
   if(i===1){
     Player.car=true;
@@ -329,6 +345,8 @@ function startChoice1(event){  //eslint-disable-line
 }
 
 function startChoice2(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice = 2;
   logic();
   if(i===1)i++;
@@ -337,7 +355,9 @@ function startChoice2(event){ //eslint-disable-line
 
 }
 
-function startChoice3(event){ //eslint-disable-line 
+function startChoice3(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   console.log(button3Flag);
   if(!button3Flag){
     payday();
