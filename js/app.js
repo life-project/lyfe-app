@@ -69,11 +69,15 @@ var Player = {
 
 function questionFunc(){
   showQuestions();
-  document.getElementById('question').textContent = Question.allQuestions[i].prompt;
-  document.getElementById('description').textContent = Question.allQuestions[i].description;
-  document.getElementById('input1').textContent = Question.allQuestions[i].button1;
-  document.getElementById('input2').textContent = Question.allQuestions[i].button2;
-  updateStatus();
+  if(i<Question.allQuestions.length){
+    document.getElementById('question').textContent = Question.allQuestions[i].prompt;
+    document.getElementById('description').textContent = Question.allQuestions[i].description;
+    document.getElementById('input1').textContent = Question.allQuestions[i].button1;
+    document.getElementById('input2').textContent = Question.allQuestions[i].button2;
+    updateStatus();
+  }else{
+    endGame();
+  }
 
 }
 
@@ -190,16 +194,18 @@ function pictureLogic(){
 function showEvents(){
   promptElement.className = 'hide';
   eventPrompt.className = 'show';
+  endGamePrompt.className= 'hide';
 }
 
 function showQuestions(){
   promptElement.className = 'show';
   eventPrompt.className = 'hide';
+  endGamePrompt.className = 'hide';
 }
 function endGame(){
   promptElement.className = 'hide';
   eventPrompt.className = 'hide';
-  endGamePrompt.className= 'show'
+  endGamePrompt.className= 'show';
 
 
 }
