@@ -48,13 +48,14 @@ var Player = {
   name: nameElement,
   age : 18,
   job : null,
-  salary : 1000,
+  salary : 50000,
   education : false,
   savings : 10000,
   car : false,
   newcar : false,
   kids : false,
   kidsNumber : 0,
+
 };
 
 function questionFunc(){
@@ -71,30 +72,41 @@ function randomNumber(){
   return Math.floor(Math.random()*(randomEventPrompt.length));
 }
 
-function randomLogic(){
+function randomLogic()
+
+{
   if (randomIndex===0) {
     Player.savings+=50000;
   }
-  if (randomIndex===1){
+  if (randomIndex===1 && Player.kids===true && Player.age < 45) {  // kids
     var liElement =document.createElement('li');
-    liElement.textContent = 'Kid: $25,000';
+    liElement.textContent = 'Kid: $13,000 /yr ';
     newLiabilitiesElement.appendChild(liElement);
     Player.kids=true;
     Player.kidsNumber++;
+    Player.savings-= 13000;
   }
-  if (randomIndex===2){
+  if (randomIndex===2){ //inheirtance
     Player.savings+=40000;
   }
-  if (randomIndex===3){
-    Player.savings-=35000;
+  if (randomIndex===3){ //lawsuit
+    Player.savings-=20000;
   }
-  if (randomIndex===4){
+  if (randomIndex===4){ // you-tube famous
     Player.savings+=10000;
   }
-  if (randomIndex===5){
+  if (randomIndex===5){ //promotion
     Player.salary+=5000;
   }
-
+  if (randomIndex===6){ //surgery
+    Player.saving-=8000;
+  }
+  if (randomIndex===7){ // casino
+    Player.savings+=1000;
+  }
+  if (randomIndex===8){ // car
+    carImageElement.src ='images/newcar.png';    
+  }
 }
 
 function randomEventRender(){
@@ -127,7 +139,7 @@ function pictureLogic(){
     if (Player.education) educationImageElement.src='images/graduation.png';
     if (!Player.education) educationImageElement.src='images/graduationx.png';
   }
-  
+
   if(i>=1){
     if(Player.car===false)carImageElement.src= 'images/newcarx.png';
     if(Player.car===true && Player.newcar===false)carImageElement.src ='images/oldcar.png';
@@ -167,11 +179,12 @@ function payday(){
 }
 
 function logic(){
+  var liElement;
   if (i===0){
     Player.age+=4;
     if(choice===1){
       Player.education=true;
-      var liElement = document.createElement('li');
+      liElement = document.createElement('li');
       liElement.textContent = 'Student Loans: $80,000';
       newLiabilitiesElement.appendChild(liElement);
     }
@@ -184,9 +197,48 @@ function logic(){
   if (i===1){
     if(choice===1)Player.car = true;
   }
-  if (i===2){
-    if(choice===1){
+  if (i===2){ //type of car
+    if(choice===1){ //new
       Player.newcar = true;
+      liElement = document.createElement('li');
+      liElement.textContent = 'Car Loan: $32,000';
+      newLiabilitiesElement.appendChild(liElement);
+    }else{ //used
+      Player.savings-=10000;
+    }
+  }
+  if(i===3){ //Marriage
+    if(choice===1){
+      Player.salary= Player.salary*1.6;
+    }
+  }
+  if(i===4){ //Mortgage
+    if(choice===1){
+      liElement = document.createElement('li');
+      liElement.textContent = 'Mortgage: $500,000';
+      newLiabilitiesElement.appendChild(liElement);
+
+    }
+
+    if(i===5){ //kids
+      if(choice===1){
+        Player.kids=true;
+      }
+    }
+    if (i===6){ //new job
+      if(choice===1){
+        Player.salary= Player.salary*0.9;
+      }
+    }
+    if (i===7){ // laid off
+      if (choice===1){
+        liElement = document.createElement('li');
+        liElement.textContent = 'Continuing Education: $15,000';
+        newLiabilitiesElement.appendChild(liElement);
+      }
+      if (choice===2){
+        Player.salary= Player.salary*0.5;
+      }
     }
   }
 
@@ -227,11 +279,7 @@ function startChoice3(event){
 }
 
 checkforName();
-// showEvents();
-// randomEventRender();
 questionFunc();
-
-// questionFunc();
 
 newButton1Element.addEventListener('click', startChoice1);
 newButton2Element.addEventListener('click', startChoice2);
