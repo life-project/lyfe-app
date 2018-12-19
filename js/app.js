@@ -2,6 +2,7 @@
 
 var promptElement = document.getElementById('question-prompt');
 var eventPrompt = document.getElementById('event-prompt');
+var endGamePrompt = document.getElementById('end-game');
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 var newButton3Element = document.getElementById('input3');
@@ -12,7 +13,6 @@ var kidImageElement = document.getElementById('third-ti');
 var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag = false;
-
 var i = 0;
 var choice = 0;
 
@@ -80,14 +80,14 @@ function randomNumber(){
   return Math.floor(Math.random()*(91));
 }
 
-function randomLogic()
-
-{
+function randomLogic(){
+  var liElement;
   if (randomIndex===0) {
     Player.savings+=50000;
   }
-  if (randomIndex===1 && Player.kids===true && Player.age < 45) {  // kids
-    var liElement =document.createElement('li');
+  if(randomIndex===1)alert('Index - kids');
+  if (randomIndex===1 && Player.kids===true) { // kids
+    liElement =document.createElement('li');
     liElement.textContent = 'Kid: $13,000 /yr ';
     newLiabilitiesElement.appendChild(liElement);
     Player.kids=true;
@@ -113,7 +113,9 @@ function randomLogic()
     Player.savings+=1000;
   }
   if (randomIndex===8){ // car
-    carImageElement.src ='images/newcar.png';    
+    Player.car=true;
+    Player.newcar=true;
+    carImageElement.src ='images/newcar.png';
   }
   if (randomIndex===9){ // casino bad day
     Player.savings-=400;
@@ -125,8 +127,15 @@ function randomLogic()
 
 function randomEventRender(){
   var randomNumberGen;
-  randomNumberGen = randomNumber();
-  
+  randomNumberGen=randomNumber();
+
+  if (Player.kids===false){
+    do {
+      randomNumberGen = randomNumber();
+    }
+    while( randomNumberGen>= 5 && randomNumberGen <15 );
+  }
+
   if(randomNumberGen>=0 && randomNumberGen <5 ) randomIndex=0;
   if(randomNumberGen>=5 && randomNumberGen <15 ) randomIndex=1;
   if(randomNumberGen>=15 && randomNumberGen <22 ) randomIndex=2;
@@ -138,7 +147,7 @@ function randomEventRender(){
   if(randomNumberGen>=64 && randomNumberGen <69 ) randomIndex=8;
   if(randomNumberGen>=69 && randomNumberGen <81 ) randomIndex=9;
   if(randomNumberGen>=81 && randomNumberGen <91 ) randomIndex=10;
-  
+
   console.log(randomNumberGen);
   console.log(randomNumberGen);
   randomLogic();
@@ -185,6 +194,13 @@ function showEvents(){
 function showQuestions(){
   promptElement.className = 'show';
   eventPrompt.className = 'hide';
+}
+function endGame(){
+  promptElement.className = 'hide';
+  eventPrompt.className = 'hide';
+  endGamePrompt.className= 'show'
+
+
 }
 
 function checkforName(){
