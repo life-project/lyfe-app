@@ -75,7 +75,7 @@ function questionFunc(){
 }
 
 function randomNumber(){
-  return Math.floor(Math.random()*(randomEventPrompt.length));
+  return Math.floor(Math.random()*(91));
 }
 
 function randomLogic()
@@ -107,16 +107,38 @@ function randomLogic()
   if (randomIndex===6){ //surgery
     Player.saving-=8000;
   }
-  if (randomIndex===7){ // casino
+  if (randomIndex===7){ // casino good day
     Player.savings+=1000;
   }
   if (randomIndex===8){ // car
     carImageElement.src ='images/newcar.png';    
   }
+  if (randomIndex===9){ // casino bad day
+    Player.savings-=400;
+  }
+  if (randomIndex===10){ // casino really bad day
+    Player.savings-=1200;
+  }
 }
 
 function randomEventRender(){
-  randomIndex = randomNumber();
+  var randomNumberGen;
+  randomNumberGen = randomNumber();
+  
+  if(randomNumberGen>=0 && randomNumberGen <5 ) randomIndex=0;
+  if(randomNumberGen>=5 && randomNumberGen <15 ) randomIndex=1;
+  if(randomNumberGen>=15 && randomNumberGen <22 ) randomIndex=2;
+  if(randomNumberGen>=22 && randomNumberGen <30 ) randomIndex=3;
+  if(randomNumberGen>=30 && randomNumberGen <35 ) randomIndex=4;
+  if(randomNumberGen>=35 && randomNumberGen <47 ) randomIndex=5;
+  if(randomNumberGen>=47 && randomNumberGen < 52 )randomIndex=6;
+  if(randomNumberGen>=52 && randomNumberGen <64 ) randomIndex=7;
+  if(randomNumberGen>=64 && randomNumberGen <69 ) randomIndex=8;
+  if(randomNumberGen>=69 && randomNumberGen <81 ) randomIndex=9;
+  if(randomNumberGen>=81 && randomNumberGen <91 ) randomIndex=10;
+  
+  console.log(randomNumberGen);
+  console.log(randomNumberGen);
   randomLogic();
   showEvents();
   document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
