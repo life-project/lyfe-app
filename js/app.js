@@ -90,7 +90,6 @@ function randomLogic(){
   if (randomIndex===0) {
     Player.savings+=50000;
   }
-  if(randomIndex===1)alert('Index - kids');
   if (randomIndex===1 && Player.kids===true) { // kids
     liElement =document.createElement('li');
     liElement.textContent = 'Kid: $13,000 /yr ';
@@ -155,6 +154,7 @@ function randomEventRender(){
 
   console.log(randomNumberGen);
   console.log(randomNumberGen);
+  Player.age+=2;
   randomLogic();
   showEvents();
   document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
@@ -170,14 +170,6 @@ function updateStatus(){
   document.getElementById('money-status').textContent = ('Savings: $' + Player.savings);
 }
 
-// function liabilitiesFunc(){
-//   if(i===0){
-//     var liElement =document.createElement('li');
-//     liElement.textContent = 'Student Loans: $80,000';
-//     newLiabilitiesElement.appendChild(liElement);
-//   }
-// }
-
 function pictureLogic(){
   if(i===0){
     if (Player.education) educationImageElement.src='images/graduation.png';
@@ -189,6 +181,8 @@ function pictureLogic(){
     if(Player.car===true && Player.newcar===false)carImageElement.src ='images/oldcar.png';
     if(Player.car===true && Player.newcar===true)carImageElement.src ='images/newcar.png';
   }
+  if(Player.kidsNumber>0)kidImageElement.src='images/baby.png';
+  if(i === 5 && Player.kids===false)kidImageElement.src='images/babyx.png';
 }
 
 function showEvents(){
@@ -225,7 +219,7 @@ function payday(){
   document.getElementById('event-description').textContent = 'This is 1 year of disposable income.';
   document.getElementById('input3').textContent = 'OK!';
   Player.savings += Player.salary;
-  Player.age+=2;
+  Player.age+=1;
   updateStatus();
   // questionFunc();
 
@@ -248,6 +242,7 @@ function logic(){
     }
   }
   if (i===1){
+    Player.age+=1;
     if(choice===1)Player.car = true;
   }
   if (i===2){ //type of car
@@ -261,44 +256,66 @@ function logic(){
     }
   }
   if(i===3){ //Marriage
+    Player.age+=1;
     if(choice===1){
       Player.salary= Player.salary*1.6;
     }
   }
   if(i===4){ //Mortgage
+    Player.age+=1;
     if(choice===1){
       liElement = document.createElement('li');
       liElement.textContent = 'Mortgage: $500,000';
       newLiabilitiesElement.appendChild(liElement);
+    }
+  }
 
+  if(i===5){ //kids
+    Player.age+=1;
+    if(choice===1){
+      Player.kids=true;
     }
-
-    if(i===5){ //kids
-      if(choice===1){
-        Player.kids=true;
-      }
+  }
+  if (i===6){ //new job
+    Player.age+=3;
+    if(choice===1){
+      Player.salary= Player.salary*0.9;
     }
-    if (i===6){ //new job
-      if(choice===1){
-        Player.salary= Player.salary*0.9;
-      }
+  }
+  if (i===7){ // laid off
+    Player.age+=1;
+    if (choice===1){
+      liElement = document.createElement('li');
+      liElement.textContent = 'Continuing Education: $15,000';
+      newLiabilitiesElement.appendChild(liElement);
     }
-    if (i===7){ // laid off
-      if (choice===1){
-        liElement = document.createElement('li');
-        liElement.textContent = 'Continuing Education: $15,000';
-        newLiabilitiesElement.appendChild(liElement);
-      }
-      if (choice===2){
-        Player.salary= Player.salary*0.5;
-      }
+    if (choice===2){
+      Player.salary= Player.salary*0.5;
+    }
+  }
+  if (i===8){ //change job
+    Player.age+=3;
+    if (choice===1){
+      Player.savings-=20000;
+      Player.salary=Player.salary*1.1;
+    }
+  }
+  if(i===9){ //nurse for mom
+    Player.age+=5;
+    if (choice===1){
+      Player.savings-=200000;
+      Player.savings+=(Player.salary*5);
+    }
+    if(choice===2){
+      Player.salary=Player.salary*0.5;
+      Player.savings+=(Player.salary*5);
     }
   }
 
   if(i!==1)pictureLogic();
   if(i===1 && Player.car===false)pictureLogic();
 }
-function startChoice1(event){
+function startChoice1(event){  //eslint-disable-line
   choice=1;
   if(i===1){
     Player.car=true;
@@ -311,7 +328,7 @@ function startChoice1(event){
   }
 }
 
-function startChoice2(event){
+function startChoice2(event){ //eslint-disable-line
   choice = 2;
   logic();
   if(i===1)i++;
@@ -320,7 +337,7 @@ function startChoice2(event){
 
 }
 
-function startChoice3(event){
+function startChoice3(event){ //eslint-disable-line 
   console.log(button3Flag);
   if(!button3Flag){
     payday();
