@@ -85,7 +85,7 @@ button {
   border: 1px solid rgba(211,211,211,1);
   -webkit-border-radius: 0.2em;
   border-radius: 0.2em;
-  font: normal normal bold 1em/2em Arial, Helvetica, sans-serif;
+  font: normal normal bold 1em/2em 'Bungee', Helvetica, sans-serif;
   color: rgba(114,114,114,1);
   -o-text-overflow: clip;
   text-overflow: clip;

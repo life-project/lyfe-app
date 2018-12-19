@@ -23,7 +23,7 @@ html, body {
     height: 80px;
     background-color: rgb(224, 224, 224, .95);
     line-height: 80px;
-    font-family: schluber, monospace;
+    font-family: 'Bungee', cursive;
     font-size: 25px;
     border-bottom: double;
 }
@@ -53,7 +53,7 @@ html, body {
     padding-top: 25px;
     padding-left: 20px;
     font-size: 20px;
-    font-family: schluber, monospace;
+    font-family: 'Bungee', cursive;
     border-left: double;
 }
 
@@ -68,24 +68,6 @@ h2 {
     font-family: schluber, monospace;
     padding-bottom: 10px;
 }
-
-/* 
-  #timeline-area {
-      background-color: rgba(255, 0, 0, 0.966);
-      border: 0 5 0 5 black solid;
-      height: 300px;
-      width: 100%;
-  } */
-
-  /* #liabilities {
-      padding-left: 20px;
-      padding-right: 20px;
-      background-color: rgba(140, 0, 255, 0.5);
-      color: black;
-      height: 100%;
-      border-left: double;
-
-  } */
 
   #question-area {
       border-top: double;
@@ -129,7 +111,6 @@ h2 {
     font-size: 20px;
 
    }
-
 
    #description {
        font-size: 20px;
