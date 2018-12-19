@@ -1,15 +1,27 @@
-a:hover {
-    color: grey;
-    }
-  
-  a:active {
-    color: rgb(3, 100, 0);
-    }
-  
-  #hero {
-    height: auto;
+main {
+    margin-top: -50px;
+}
+
+#hero {
+    max-height: 300px;
     width: 100%;
+    overflow: hidden;
     }
+
+#hero-image {
+    object-fit: cover;
+    object-position: 50% 50%; /* default value: image is centered*/
+    object-position: -50px -200px;
+}
+
+
+h2 {
+    color: rgb(255, 217, 0);
+    font-family: schluber, monospace;
+    font-size: 40px;
+    padding-top: 10px;
+    
+}
 
 #instructions {
     width: 90%;
@@ -18,6 +30,16 @@ a:hover {
     margin: 0 auto;
     display: block;
     text-align: center;
+    color: rgb(255, 217, 0);
+    font-family: monospace;
+    font-size: 20px;
+    padding-top: 10px;
+    line-height: 25px;
+  }
+
+  #insturctions-textcontainer {
+      width: 60%;
+      margin: 0 auto;
   }
   
   #name-section {
@@ -28,41 +50,25 @@ a:hover {
     text-align: center;
   }
   
-  #name-submit {
-    height: 15px;
-    background-color: yellowgreen;
-    color: black;
-    padding: 14px 40px;
-  }
-  
-  #name-submit a {
-    color: black;
-    text-decoration: none;
-    font-size: 15px;
-  }
-  
   #start-button {
-    border: 5px greenyellow solid;
-    padding: 14px 40px;
     font-size: 30px;
-    margin-top: 30px;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  #start-button a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  #start-button a:hover {
-    color: orange;
-    text-decoration: none;
+    margin: 0 auto;
   }
 
-  #start-button:hover {
-    border: 5px orange solid;
-    background-color: blue;
-    text-decoration: none;
-  }
+  legend {
+    color: rgb(255, 217, 0);
+    font-family: schluber;
+    font-size: 35px;
+    padding-top: 10px;
+}
 
-  
+#name {
+    width: 110%;
+    height: 110%;
+    margin: 0 auto;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}

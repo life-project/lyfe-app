@@ -2,6 +2,7 @@
 
 var promptElement = document.getElementById('question-prompt');
 var eventPrompt = document.getElementById('event-prompt');
+var endGamePrompt = document.getElementById('end-game');
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 var newButton3Element = document.getElementById('input3');
@@ -9,10 +10,11 @@ var nameElement = document.getElementById('name');
 var carImageElement = document.getElementById('second-ti');
 var educationImageElement = document.getElementById('first-ti');
 var kidImageElement = document.getElementById('third-ti');
+var houseImageElement= document.getElementById('fouth-ti');
+var marriageImageElement= document.getElementById('fifth-ti');
 var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag = false;
-
 var i = 0;
 var choice = 0;
 
@@ -34,6 +36,7 @@ new Question('How do you feel about kids?', ' ', 'I want them', 'Not for me');
 new Question('Would you like to change jobs?', 'A new job will involve a pay-cut, but will have more potential to climb the ladder.', 'Yes', 'No');
 new Question('The economy took a downturn and you have been laid off. Do you want to pursue education for a year or find another job quickly?', 'Any education options will require a loan in the amount of $15,000. Immediate job options will provide half as much pay as you were receiving previously.', 'Education', 'Work now');
 new Question('Would you like to change jobs?', 'The new job', 'Yes', 'No');
+new Question('Dad passed away a few years ago and mom can\'t take care of herself anymore. Do you hire an in-home nurse or take care of her yourself?', 'Home care will reduce your savings by $200,000. Taking care of her on your own will require you to work part-time, reducing your salary.', 'Hire nurse', 'Do it myself');
 
 var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['Congrats, you have a kid!', 'This will cost you $13,000 a year.'],
@@ -44,6 +47,8 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['You need surgery.', 'Your insurance does not cover all costs, so this will cost you $8,000.'],
   ['You had a good day at the casino.', 'You\'re taking home $1,000.'],
   ['You won a new car on a game show!', ''],
+  ['You had a bad day at the casino.', 'You lost $400.'],
+  ['You had a really bad day at the casino.', 'You lost $1,200.'],
 ];
 
 
@@ -61,31 +66,36 @@ var Player = {
   newcar : false,
   kids : false,
   kidsNumber : 0,
+  house:false,
+  marriage:false,
 
 };
 
 function questionFunc(){
   showQuestions();
-  document.getElementById('question').textContent = Question.allQuestions[i].prompt;
-  document.getElementById('description').textContent = Question.allQuestions[i].description;
-  document.getElementById('input1').textContent = Question.allQuestions[i].button1;
-  document.getElementById('input2').textContent = Question.allQuestions[i].button2;
-  updateStatus();
+  if(i<Question.allQuestions.length){
+    document.getElementById('question').textContent = Question.allQuestions[i].prompt;
+    document.getElementById('description').textContent = Question.allQuestions[i].description;
+    document.getElementById('input1').textContent = Question.allQuestions[i].button1;
+    document.getElementById('input2').textContent = Question.allQuestions[i].button2;
+    updateStatus();
+  }else{
+    endGame();
+  }
 
 }
 
 function randomNumber(){
-  return Math.floor(Math.random()*(randomEventPrompt.length));
+  return Math.floor(Math.random()*(91));
 }
 
-function randomLogic()
-
-{
+function randomLogic(){
+  var liElement;
   if (randomIndex===0) {
     Player.savings+=50000;
   }
-  if (randomIndex===1 && Player.kids===true && Player.age < 45) {  // kids
-    var liElement =document.createElement('li');
+  if (randomIndex===1 && Player.kids===true) { // kids
+    liElement =document.createElement('li');
     liElement.textContent = 'Kid: $13,000 /yr ';
     newLiabilitiesElement.appendChild(liElement);
     Player.kids=true;
@@ -107,16 +117,49 @@ function randomLogic()
   if (randomIndex===6){ //surgery
     Player.saving-=8000;
   }
-  if (randomIndex===7){ // casino
+  if (randomIndex===7){ // casino good day
     Player.savings+=1000;
   }
   if (randomIndex===8){ // car
-    carImageElement.src ='images/newcar.png';    
+    Player.car=true;
+    Player.newcar=true;
+    carImageElement.src ='images/newcar.png';
+  }
+  if (randomIndex===9){ // casino bad day
+    Player.savings-=400;
+  }
+  if (randomIndex===10){ // casino really bad day
+    Player.savings-=1200;
   }
 }
 
 function randomEventRender(){
-  randomIndex = randomNumber();
+  var randomNumberGen;
+  randomNumberGen=randomNumber();
+
+
+  if (Player.kids===false){
+    do {
+      randomNumberGen = randomNumber();
+    }
+    while( randomNumberGen>= 5 && randomNumberGen <15 );
+  }
+
+  if(randomNumberGen>=0 && randomNumberGen <5 ) randomIndex=0;
+  if(randomNumberGen>=5 && randomNumberGen <15 ) randomIndex=1;
+  if(randomNumberGen>=15 && randomNumberGen <22 ) randomIndex=2;
+  if(randomNumberGen>=22 && randomNumberGen <30 ) randomIndex=3;
+  if(randomNumberGen>=30 && randomNumberGen <35 ) randomIndex=4;
+  if(randomNumberGen>=35 && randomNumberGen <47 ) randomIndex=5;
+  if(randomNumberGen>=47 && randomNumberGen < 52 )randomIndex=6;
+  if(randomNumberGen>=52 && randomNumberGen <64 ) randomIndex=7;
+  if(randomNumberGen>=64 && randomNumberGen <69 ) randomIndex=8;
+  if(randomNumberGen>=69 && randomNumberGen <81 ) randomIndex=9;
+  if(randomNumberGen>=81 && randomNumberGen <91 ) randomIndex=10;
+
+  console.log(randomNumberGen);
+  console.log(randomNumberGen);
+  Player.age+=2;
   randomLogic();
   showEvents();
   document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
@@ -132,14 +175,6 @@ function updateStatus(){
   document.getElementById('money-status').textContent = ('Savings: $' + Player.savings);
 }
 
-// function liabilitiesFunc(){
-//   if(i===0){
-//     var liElement =document.createElement('li');
-//     liElement.textContent = 'Student Loans: $80,000';
-//     newLiabilitiesElement.appendChild(liElement);
-//   }
-// }
-
 function pictureLogic(){
   if(i===0){
     if (Player.education) educationImageElement.src='images/graduation.png';
@@ -151,16 +186,35 @@ function pictureLogic(){
     if(Player.car===true && Player.newcar===false)carImageElement.src ='images/oldcar.png';
     if(Player.car===true && Player.newcar===true)carImageElement.src ='images/newcar.png';
   }
+  if(Player.kidsNumber>0)kidImageElement.src='images/baby.png';
+  if(i === 5 && Player.kids===false)kidImageElement.src='images/babyx.png';
+  if(i===4){ 
+    if(Player.house===true)houseImageElement.src='images/house.png';
+    if(Player.house===false)houseImageElement.src='images/housex.png';
+  }
+  if(i===3){
+    if(Player.marriage===true)marriageImageElement.src='images/house.png';
+    if(Player.marriage===false)marriageImageElement.src='images/housex.png'
+  }
 }
 
 function showEvents(){
   promptElement.className = 'hide';
   eventPrompt.className = 'show';
+  endGamePrompt.className= 'hide';
 }
 
 function showQuestions(){
   promptElement.className = 'show';
   eventPrompt.className = 'hide';
+  endGamePrompt.className = 'hide';
+}
+function endGame(){
+  promptElement.className = 'hide';
+  eventPrompt.className = 'hide';
+  endGamePrompt.className= 'show';
+
+
 }
 
 function checkforName(){
@@ -168,17 +222,18 @@ function checkforName(){
   while(!Player.name){
     Player.name = prompt('Please enter your name :');
     localStorage.setItem('username', Player.name);
+  
   }
 }
 
 function payday(){
   showEvents();
   console.log('payday');
-  document.getElementById('event').textContent = 'Your Got Paid!';
-  document.getElementById('event-description').textContent = 'This is 2 year income.';
+  document.getElementById('event').textContent = 'You Got Paid!';
+  document.getElementById('event-description').textContent = 'This is 1 year of disposable income.';
   document.getElementById('input3').textContent = 'OK!';
   Player.savings += Player.salary;
-  Player.age+=2;
+  Player.age+=1;
   updateStatus();
   // questionFunc();
 
@@ -201,6 +256,7 @@ function logic(){
     }
   }
   if (i===1){
+    Player.age+=1;
     if(choice===1)Player.car = true;
   }
   if (i===2){ //type of car
@@ -214,44 +270,68 @@ function logic(){
     }
   }
   if(i===3){ //Marriage
+    Player.age+=1;
     if(choice===1){
       Player.salary= Player.salary*1.6;
     }
   }
   if(i===4){ //Mortgage
+    Player.age+=1;
     if(choice===1){
       liElement = document.createElement('li');
       liElement.textContent = 'Mortgage: $500,000';
       newLiabilitiesElement.appendChild(liElement);
+    }
+  }
 
+  if(i===5){ //kids
+    Player.age+=1;
+    if(choice===1){
+      Player.kids=true;
     }
-
-    if(i===5){ //kids
-      if(choice===1){
-        Player.kids=true;
-      }
+  }
+  if (i===6){ //new job
+    Player.age+=3;
+    if(choice===1){
+      Player.salary= Player.salary*0.9;
     }
-    if (i===6){ //new job
-      if(choice===1){
-        Player.salary= Player.salary*0.9;
-      }
+  }
+  if (i===7){ // laid off
+    Player.age+=1;
+    if (choice===1){
+      liElement = document.createElement('li');
+      liElement.textContent = 'Continuing Education: $15,000';
+      newLiabilitiesElement.appendChild(liElement);
     }
-    if (i===7){ // laid off
-      if (choice===1){
-        liElement = document.createElement('li');
-        liElement.textContent = 'Continuing Education: $15,000';
-        newLiabilitiesElement.appendChild(liElement);
-      }
-      if (choice===2){
-        Player.salary= Player.salary*0.5;
-      }
+    if (choice===2){
+      Player.salary= Player.salary*0.5;
+    }
+  }
+  if (i===8){ //change job
+    Player.age+=3;
+    if (choice===1){
+      Player.savings-=20000;
+      Player.salary=Player.salary*1.1;
+    }
+  }
+  if(i===9){ //nurse for mom
+    Player.age+=5;
+    if (choice===1){
+      Player.savings-=200000;
+      Player.savings+=(Player.salary*5);
+    }
+    if(choice===2){
+      Player.salary=Player.salary*0.5;
+      Player.savings+=(Player.salary*5);
     }
   }
 
   if(i!==1)pictureLogic();
   if(i===1 && Player.car===false)pictureLogic();
 }
-function startChoice1(event){
+function startChoice1(event){  //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice=1;
   if(i===1){
     Player.car=true;
@@ -264,7 +344,9 @@ function startChoice1(event){
   }
 }
 
-function startChoice2(event){
+function startChoice2(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice = 2;
   logic();
   if(i===1)i++;
@@ -273,7 +355,9 @@ function startChoice2(event){
 
 }
 
-function startChoice3(event){
+function startChoice3(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   console.log(button3Flag);
   if(!button3Flag){
     payday();
