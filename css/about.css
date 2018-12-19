@@ -10,7 +10,7 @@ html, body {
 
 h2 {
     color: rgb(255, 217, 0);
-    font-family: schluber, monospace;
+    font-family: 'Bungee', cursive;
     font-size: 40px;
     padding-top: 20px;
     text-align: center;
@@ -23,8 +23,8 @@ h2 {
 
 .col {
     flex: 1;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 35px;
+    padding-right: 35px;
     text-align: center;
     padding-top: 70px;
     padding-bottom: 70px;
@@ -41,9 +41,9 @@ h2 {
   #email {
       padding-top: 20px;
       padding-bottom: 20px;
-      font-family: monospace, Arial, Helvetica, sans-serif;
+      font-family: 'Bungee', cursive;
       font-weight: 600;
-
+      display: block;
   }
   
   .container-text {
@@ -63,4 +63,6 @@ h2 {
 
 p {
     color: black;
+    padding-left: 10px;
+    padding-right: 10px;
    }

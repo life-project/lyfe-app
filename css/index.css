@@ -13,7 +13,7 @@
 
 h2 {
     color: rgb(255, 217, 0);
-    font-family: schluber, monospace;
+    font-family: 'Bungee', cursive;
     font-size: 40px;
     padding-top: 40px;
 }
@@ -50,11 +50,10 @@ h2 {
 
   legend {
     color: rgb(255, 217, 0);
-    font-family: schluber;
-    font-size: 35px;
+    font-family: 'Bungee', cursive;
+    font-size: 30px;
     padding-top: 10px;
     padding-bottom: 20px;
-    font-style: oblique;
 
 }
   
