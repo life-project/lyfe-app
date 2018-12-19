@@ -44,6 +44,8 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['You need surgery.', 'Your insurance does not cover all costs, so this will cost you $8,000.'],
   ['You had a good day at the casino.', 'You\'re taking home $1,000.'],
   ['You won a new car on a game show!', ''],
+  ['You had a bad day at the casino.', 'You lost $400.'],
+  ['You had a really bad day at the casino.', 'You lost $1,200.'],
 ];
 
 
@@ -196,8 +198,8 @@ function checkforName(){
 function payday(){
   showEvents();
   console.log('payday');
-  document.getElementById('event').textContent = 'Your Got Paid!';
-  document.getElementById('event-description').textContent = 'This is 2 year income.';
+  document.getElementById('event').textContent = 'You Got Paid!';
+  document.getElementById('event-description').textContent = 'This is 1 year of disposable income.';
   document.getElementById('input3').textContent = 'OK!';
   Player.savings += Player.salary;
   Player.age+=2;
