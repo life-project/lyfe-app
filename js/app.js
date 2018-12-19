@@ -31,6 +31,9 @@ new Question('What type of car would you like to buy?', 'A new car will require 
 new Question('Do you want to get married?', '', 'Yes', 'No');
 new Question('Do you want to buy a house?', 'Buying a house will require a loan in the amount of $500,000.', 'Yes, I don\'t want to rent forever', 'No, I\'m not ready for that');
 new Question('How do you feel about kids?', ' ', 'I want them', 'Not for me');
+new Question('Would you like to change jobs?', 'A new job will involve a pay-cut, but will have more potential to climb the ladder.', 'Yes', 'No');
+new Question('The economy took a downturn and you have been laid off. Do you want to pursue education for a year or find another job quickly?', 'Any education options will require a loan in the amount of $15,000. Immediate job options will provide half as much pay as you were receiving previously.', 'Education', 'Work now');
+new Question('Would you like to change jobs?', 'The new job', 'Yes', 'No');
 
 var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['Congrats, you have a kid!', 'This will cost you $13,000 a year.'],
@@ -38,6 +41,9 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['You have been sued.', 'This will cost you $20,000!'],
   ['You were made famous on You-Tube!', 'You gained $10,000.'],
   ['You got a promotion!', 'You will make an additional $5,000'],
+  ['You need surgery.', 'Your insurance does not cover all costs, so this will cost you $8,000.'],
+  ['You had a good day at the casino.', 'You\'re taking home $1,000.'],
+  ['You won a new car on a game show!', ''],
 ];
 
 
