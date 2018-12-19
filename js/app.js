@@ -9,9 +9,9 @@ var newButton3Element = document.getElementById('input3');
 var nameElement = document.getElementById('name');
 var carImageElement = document.getElementById('second-ti');
 var educationImageElement = document.getElementById('first-ti');
-var kidImageElement = document.getElementById('third-ti');
+var kidImageElement = document.getElementById('fifth-ti');
 var houseImageElement= document.getElementById('fourth-ti');
-var marriageImageElement= document.getElementById('fifth-ti');
+var marriageImageElement= document.getElementById('third-ti');
 var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag = false;
@@ -271,6 +271,7 @@ function logic(){
     Player.age+=1;
     if(choice===1){
       Player.salary = Player.salary*1.6;
+      Player.marriage = true;
     }
   }
   if(i===4){ //Mortgage
@@ -279,6 +280,7 @@ function logic(){
       liElement = document.createElement('li');
       liElement.textContent = 'Mortgage: $500,000';
       newLiabilitiesElement.appendChild(liElement);
+      Player.house = true;
     }
   }
 
