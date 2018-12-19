@@ -1,0 +1,68 @@
+a:hover {
+    color: grey;
+    }
+  
+  a:active {
+    color: rgb(3, 100, 0);
+    }
+  
+  #hero {
+    height: auto;
+    width: 100%;
+    }
+
+#instructions {
+    width: 90%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
+  
+  #name-section {
+    width: 50%;
+    margin: 0 auto;
+    vertical-align: center;
+    display: block;
+    text-align: center;
+  }
+  
+  #name-submit {
+    height: 15px;
+    background-color: yellowgreen;
+    color: black;
+    padding: 14px 40px;
+  }
+  
+  #name-submit a {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  
+  #start-button {
+    border: 5px greenyellow solid;
+    padding: 14px 40px;
+    font-size: 30px;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #start-button a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  #start-button a:hover {
+    color: orange;
+    text-decoration: none;
+  }
+
+  #start-button:hover {
+    border: 5px orange solid;
+    background-color: blue;
+    text-decoration: none;
+  }
+
+  
