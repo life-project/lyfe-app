@@ -10,6 +10,8 @@ var nameElement = document.getElementById('name');
 var carImageElement = document.getElementById('second-ti');
 var educationImageElement = document.getElementById('first-ti');
 var kidImageElement = document.getElementById('third-ti');
+var houseImageElement= document.getElementById('fouth-ti');
+var marriageImageElement= document.getElementById('fifth-ti');
 var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
 var button3Flag = false;
@@ -64,6 +66,8 @@ var Player = {
   newcar : false,
   kids : false,
   kidsNumber : 0,
+  house:false,
+  marriage:false,
 
 };
 
@@ -133,6 +137,7 @@ function randomEventRender(){
   var randomNumberGen;
   randomNumberGen=randomNumber();
 
+
   if (Player.kids===false){
     do {
       randomNumberGen = randomNumber();
@@ -183,6 +188,14 @@ function pictureLogic(){
   }
   if(Player.kidsNumber>0)kidImageElement.src='images/baby.png';
   if(i === 5 && Player.kids===false)kidImageElement.src='images/babyx.png';
+  if(i===4){ 
+    if(Player.house===true)houseImageElement.src='images/house.png';
+    if(Player.house===false)houseImageElement.src='images/housex.png';
+  }
+  if(i===3){
+    if(Player.marriage===true)marriageImageElement.src='images/house.png';
+    if(Player.marriage===false)marriageImageElement.src='images/housex.png'
+  }
 }
 
 function showEvents(){
@@ -209,6 +222,7 @@ function checkforName(){
   while(!Player.name){
     Player.name = prompt('Please enter your name :');
     localStorage.setItem('username', Player.name);
+  
   }
 }
 
@@ -316,6 +330,8 @@ function logic(){
   if(i===1 && Player.car===false)pictureLogic();
 }
 function startChoice1(event){  //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice=1;
   if(i===1){
     Player.car=true;
@@ -329,6 +345,8 @@ function startChoice1(event){  //eslint-disable-line
 }
 
 function startChoice2(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   choice = 2;
   logic();
   if(i===1)i++;
@@ -337,7 +355,9 @@ function startChoice2(event){ //eslint-disable-line
 
 }
 
-function startChoice3(event){ //eslint-disable-line 
+function startChoice3(event){ //eslint-disable-line
+  localStorage.setItem('user-game-play',JSON.stringify(Player));
+  localStorage.setItem('user-question-indicator',i);
   console.log(button3Flag);
   if(!button3Flag){
     payday();
