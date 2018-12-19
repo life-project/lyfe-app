@@ -127,6 +127,7 @@ footer {
   line-height: 10px;
   vertical-align: bottom;
   margin-top: 60px;
+  bottom: 0;
 }
 
 #instructions {
@@ -155,4 +156,25 @@ footer {
 #name-submit a {
   color: black;
   text-decoration: none;
+}
+
+
+#start-button {
+  border: 3px greenyellow solid;
+  padding-left: 60px;
+  padding-right: 60px;
+  font-size: 30px;
+  margin-top: 30px;
+  background-color: gainsboro;
+}
+
+#start-button a {
+  color: greenyellow;
+  text-decoration: none;
+}
+
+#start-button a:hover {
+  color: blue;
+  text-decoration: none;
+  background-color: purple;
 }
