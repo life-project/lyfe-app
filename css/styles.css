@@ -1,31 +1,25 @@
-
-
-a:hover {
-  color: grey;
-  }
-
-a:active {
-  color: rgb(3, 100, 0);
-  }
-
-#hero {
-  height: auto;
+html, body {
+  height: 100%;
   width: 100%;
+  font-family: monospace, sans-serif;
+  margin: 0 auto;
+  vertical-align: middle;
+  background-color: black;
+  display: inline-block;
   }
 
 p, li, a, h2, h1 {
   color: white;
   }
 
-  h1 {
-    text-align: center;
+h1 {
+  text-align: center;
   }
   
 nav {
   width: 100%;
   height: 100px;
   background-color: greenyellow;
-  margin-bottom: 25px;
   box-shadow: 0 4px 8px 0 rgba(21, 255, 0, 0.589), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
@@ -52,31 +46,6 @@ nav ul li {
   line-height: 70px;
   padding: 0 34px;
   }
-
-main {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  }
-
-legend {
-  color: white;
-  font-weight: bold;
-  }
-
-label {
-  color: greenyellow;
-  }
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: inline-block;
-}
-
-
 
 
 .row {
@@ -112,7 +81,6 @@ label {
   height: 100%;
 }
 
-
 .title {
   color: greenyellow;
 }
@@ -130,51 +98,11 @@ footer {
   bottom: 0;
 }
 
-#instructions {
-  width: 90%;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  /* height: 100%; */
-  margin: 0 auto;
-  display: block;
-  text-align: center;
+.hide {
+  display: none;
 }
 
-#name-section {
-  width: 50%;
-  /* height: 100%; */
-  margin: 0 auto;
-  vertical-align: center;
-  display: block;
-  text-align: center;
+.show {
+  display: inline-block;
 }
 
-#name-submit {
-  height: 15px;
-}
-
-#name-submit a {
-  color: black;
-  text-decoration: none;
-}
-
-
-#start-button {
-  border: 3px greenyellow solid;
-  padding-left: 60px;
-  padding-right: 60px;
-  font-size: 30px;
-  margin-top: 30px;
-  background-color: gainsboro;
-}
-
-#start-button a {
-  color: greenyellow;
-  text-decoration: none;
-}
-
-#start-button a:hover {
-  color: blue;
-  text-decoration: none;
-  background-color: purple;
-}

@@ -58,3 +58,12 @@ html, body {
       padding-left: 10px;
       padding-right: 10px;
   }
+
+  legend {
+    color: white;
+    font-weight: bold;
+    }
+  
+  label {
+    color: greenyellow;
+    }
