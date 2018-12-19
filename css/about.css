@@ -1,0 +1,15 @@
+.flex-grid {
+    display: flex;
+  }
+
+  .col {
+    flex: 1;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+  }
+
+#color {
+    background-color: orange;
+    padding: 10px;
+}
