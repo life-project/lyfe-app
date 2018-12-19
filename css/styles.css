@@ -1,82 +1,68 @@
 html, body {
-  height: 100%;
-  width: 100%;
-  font-family: monospace, sans-serif;
-  margin: 0 auto;
-  vertical-align: middle;
-  background-color: rgb(0, 132, 255);
-  display: inline-block;
+    height: 100%;
+    width: 100%;
+    font-family: monospace, sans-serif;
+    margin: 0 auto;
+    vertical-align: middle;
+    background-color: rgb(0, 132, 255);
+    display: inline-block;
   }
-
-p, li, h2, h1 {
-  color: white;
-  }
-
-h1 {
-  text-align: center;
-  }
-
-  
   
 nav {
-  width: 100%;
-  height: 100px;
-  background-color: rgb(255, 47, 47);
-  box-shadow: 0 4px 8px 0 rgba(211, 211, 211, 0.692), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-family: schluber, monospace;
-  font-size: 20px;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(255, 47, 47);
+    box-shadow: 0 4px 8px 0 rgba(211, 211, 211, 0.692), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: schluber, monospace;
+    font-size: 30px;
   }
 
-  nav #logo {
-  color: rgb(255, 255, 255);
-  font-weight: 800;
-  text-decoration: none;
-  font-family: schluber, monospace;
-  display: inline-block;
-  font-size: 50px;
-  padding-left: 30px;
-  line-height: 35px;
+  #logo {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    text-decoration: none;
+    font-family: schluber, monospace;
+    display: inline-block;
+    font-size: 50px;
+    padding-left: 30px;
+    line-height: 100px;
   }
 
 nav a {
-  color: yellow;
-  font-weight: 800;
-  text-decoration: none;
+    color: yellow;
+    font-weight: 800;
+    text-decoration: none;
   }
 
-  nav a:hover {
+nav a:hover {
     color: blue;
     font-weight: 800;
     text-decoration: none;
-    }
+  }
 
 
 nav ul {
-  display: inline-block;
-  vertical-align: top;
-  float: right;
-  padding-right: 25px;
+    display: inline-block;
+    float: right;
+    padding-right: 25px;
   }
 
 nav ul li {
-  display: inline-block;
-  line-height: 70px;
-  padding: 0 34px;
+    display: inline-block;
+    line-height: 100px;
+    padding: 0 34px;
   }
 
-
-
-
-  footer {
+footer {
+    border-top: black double;
     height: 75px;
     width: 100%;
     padding-top: 30px;
-    background-color: rgb(241, 217, 0);
+    background-color: rgb(255, 255, 255);
     text-align: center;
-    color: white;
-    line-height: 10px;
+    line-height: 75px;
     vertical-align: bottom;
-    margin-top: 60px;
     bottom: 0;
   }
 
@@ -99,7 +85,7 @@ button {
   border: 1px solid rgba(211,211,211,1);
   -webkit-border-radius: 0.2em;
   border-radius: 0.2em;
-  font: normal normal bold 1em/2em Arial, Helvetica, sans-serif;
+  font: normal normal bold 1em/2em 'Bungee', Helvetica, sans-serif;
   color: rgba(114,114,114,1);
   -o-text-overflow: clip;
   text-overflow: clip;
