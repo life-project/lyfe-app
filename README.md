@@ -1,4 +1,4 @@
-GAME OF LYFE
+# GAME OF LYFE
 
 ## Team Members: 
 Clara Munro, Jessica Roland, Tim Schoen

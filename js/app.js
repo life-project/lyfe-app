@@ -33,7 +33,7 @@ new Question('Do you want to buy a house?', 'Buying a house will require a loan 
 new Question('How do you feel about kids?', ' ', 'I want them', 'Not for me');
 new Question('Would you like to change jobs?', 'A new job will involve a pay-cut, but will have more potential to climb the ladder.', 'Yes', 'No');
 new Question('The economy took a downturn and you have been laid off. Do you want to pursue education for a year or find another job quickly?', 'Any education options will require a loan in the amount of $15,000. Immediate job options will provide half as much pay as you were receiving previously.', 'Education', 'Work now');
-new Question('Would you like to change jobs?', 'The new job', 'Yes', 'No');
+new Question('Would you like to change jobs?', 'The new job will increase your pay by 10%, but will also reduce your savings by $20,000 to cover moving and the cost-of-living difference. Nothing changes if you stay where you are.', 'Yes', 'No');
 new Question('Dad passed away a few years ago and mom can\'t take care of herself anymore. Do you hire an in-home nurse or take care of her yourself?', 'Home care will reduce your savings by $200,000. Taking care of her on your own will require you to work part-time, reducing your salary.', 'Hire nurse', 'Do it myself');
 
 var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
