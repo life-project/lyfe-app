@@ -55,7 +55,7 @@ nav ul li {
   }
 
 footer {
-    border: 5px 0 0 0 black solid;
+    border-top: black double;
     height: 75px;
     width: 100%;
     padding-top: 30px;
