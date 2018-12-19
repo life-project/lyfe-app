@@ -82,14 +82,6 @@ nav ul li {
 
 
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: inline-block;
-}
-
 @font-face {
   font-family: schluber;
   src: local(css/schluber.ttf);

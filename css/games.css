@@ -4,9 +4,8 @@ html, body {
     font-family: monospace, sans-serif;
     margin: 0 auto;
     vertical-align: middle;
-    background-color: black;
+    background-image: url("../images/hero2.jpg");
     display: inline-block;
-    background-color: rgb(253, 253, 253);
 }
 
 #game-area {
@@ -52,13 +51,6 @@ html, body {
       height: 200px;
   }
 
-  button {
-      /* width: 4px;
-      height: 20px; */
-      padding-left: 10px;
-      padding-right: 10px;
-  }
-
   legend {
     color: white;
     font-weight: bold;
@@ -67,3 +59,12 @@ html, body {
   label {
     color: greenyellow;
     }
+
+
+.hide {
+    display: none;
+  }
+  
+  .show {
+    display: inline-block;
+  }
