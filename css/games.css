@@ -65,8 +65,9 @@ html, body {
 
 h2 {
     font-size: 25px;
-    font-family: schluber, monospace;
+    font-family: 'Bungee', cursive;
     padding-bottom: 10px;
+    color: red;
 }
 
   #question-area {
@@ -114,4 +115,21 @@ h2 {
 
    #description {
        font-size: 20px;
+   }
+
+   #name-status {
+    font-family: 'Bungee', cursive;
+    color: rgb(32, 90, 250);
+    text-align: center;
+   }
+
+   #liabilities {
+    font-family: 'Bungee', cursive;
+    color: red;
+    text-align: center;
+   }
+
+   #end-game {
+       font-size: 40px;
+       font-family: 'Bungee', cursive;
    }
