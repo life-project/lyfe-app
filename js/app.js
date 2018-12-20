@@ -72,6 +72,7 @@ var Player = {
   house : false,
   marriage : false,
   totalLia:0,
+  netPlayerMoney:0
 };
 
 function questionFunc(){
@@ -217,10 +218,11 @@ function showQuestions(){
   endGamePrompt.className = 'hide';
 }
 function endGame(){
+  Player.netPlayerMoney=Player.savings-Player.totalLia;
   document.getElementById('total-savings').textContent =Player.savings;
   document.getElementById('total-liabilities').textContent =Player.totalLia;
-  document.getElementById('total-liabilities').textContent =(Player.savings-Player.totalLia);
-
+  document.getElementById('net-worth').textContent =Player.netPlayerMoney;
+ 
 
   promptElement.className = 'hide';
   eventPrompt.className = 'hide';
