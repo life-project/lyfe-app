@@ -10,16 +10,16 @@ var nameElement = document.getElementById('name');
 var carImageElement = document.getElementById('second-ti');
 var educationImageElement = document.getElementById('first-ti');
 var kidImageElement = document.getElementById('fifth-ti');
-var houseImageElement= document.getElementById('fourth-ti');
-var marriageImageElement= document.getElementById('third-ti');
+var houseImageElement = document.getElementById('fourth-ti');
+var marriageImageElement = document.getElementById('third-ti');
 var newLiabilitiesElement = document.getElementById('liabilities');
 
 var randomIndex; //used ID random event
 var button3Flag = false; // used to alternate between Payday  and Random event
 var i = 0; // Index for fixed question
-var choice = 0; //
+var choice = 0; //associates logic with appropriate button (1 or 2)
 
-function Question (prompt, description, button1, button2){ //Used to construct an array of obejects for fixed questions
+function Question (prompt, description, button1, button2){ //Used to construct an array of objects for fixed questions
   this.prompt = prompt;
   this.description = description;
   this.button1 = button1;
@@ -40,7 +40,7 @@ new Question('The economy took a downturn and you have been laid off. Do you wan
 new Question('Would you like to change jobs?', 'The new job will increase your pay by 10%, but will also reduce your savings by $20,000 to cover moving and the cost-of-living difference. Nothing changes if you stay where you are.', 'Yes', 'No');
 new Question('Dad passed away a few years ago and mom can\'t take care of herself anymore. Do you hire an in-home nurse or take care of her yourself?', 'Home care will reduce your savings by $200,000. Taking care of her on your own will require you to work part-time, reducing your salary.', 'Hire nurse', 'Do it myself');
 
-// array of Random Events and discriptions
+// array of Random Events and descriptions
 var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['Congrats, you have a kid!', 'This will cost you $13,000 a year.'],
   ['You received an inheritance!', 'Sorry for your loss, but you gained $40,000.'],
@@ -68,8 +68,8 @@ var Player = {
   kidsNumber : 0,
   house : false,
   marriage : false,
-  totalLia:0,
-  netPlayerMoney:0
+  totalLia : 0,
+  netPlayerMoney : 0
 };
 
 // Used to alter DOM to display fixed questions
@@ -101,7 +101,7 @@ function randomEventRender(){
     }
     while( randomNumberGen >= 3 && randomNumberGen < 43 );
   }
-  if(randomNumberGen>=0 && randomNumberGen <3 ) randomIndex=0; // changes probibility of  random event
+  if(randomNumberGen>=0 && randomNumberGen <3 ) randomIndex=0; // changes probability of  random event
   if(randomNumberGen>=3 && randomNumberGen <43 ) randomIndex=1;
   if(randomNumberGen>=43 && randomNumberGen <46 ) randomIndex=2;
   if(randomNumberGen>=46 && randomNumberGen <50 ) randomIndex=3;
@@ -234,7 +234,7 @@ function checkforName(){
   }
 }
 
-//
+// pays player once a year
 function payday(){
   showEvents();
   console.log('payday');
