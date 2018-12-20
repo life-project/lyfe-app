@@ -50,8 +50,9 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['You need surgery.', 'Your insurance does not cover all costs, so this will cost you $8,000.'],
   ['You had a good day at the casino.', 'You\'re taking home $1,000.'],
   ['You won a new car on a game show!', ''],
-  ['You had a bad day at the casino.', 'You lost $400.'],
-  ['You had a really bad day at the casino.', 'You lost $1,200.'],
+  ['You had a bad day at the casino.', 'You lost $500.'],
+  ['You were contracted to help develop an app.', 'You were paid $5,000.'],
+  ['You were a winner on Wheel of Fortune!', 'You won $10,000.'],
 ];
 
 
@@ -110,8 +111,9 @@ function randomEventRender(){
   if(randomNumberGen>=61 && randomNumberGen <67 )randomIndex=6;
   if(randomNumberGen>=67 && randomNumberGen <77 ) randomIndex=7;
   if(randomNumberGen>=77 && randomNumberGen <80 ) randomIndex=8;
-  if(randomNumberGen>=80 && randomNumberGen <90 ) randomIndex=9;
-  if(randomNumberGen>=90 && randomNumberGen <100 ) randomIndex=10;
+  if(randomNumberGen>=80 && randomNumberGen <86 ) randomIndex=9;
+  if(randomNumberGen>=86 && randomNumberGen <94 ) randomIndex=10;
+  if(randomNumberGen>=94 && randomNumberGen <100 ) randomIndex=11;
   Player.age+=2;
   randomLogic();
   showEvents();
@@ -160,10 +162,13 @@ function randomLogic(){
     carImageElement.src ='images/newcar.png';
   }
   if (randomIndex===9){ // casino bad day
-    Player.savings-=400;
+    Player.savings-=500;
   }
-  if (randomIndex===10){ // casino really bad day
-    Player.savings-=1200;
+  if (randomIndex===10){ // develop app
+    Player.savings+=5000;
+  }
+  if (randomIndex===11){ // Wheel of Fortune
+    Player.savings+=10000;
   }
   pictureLogic();
 }
