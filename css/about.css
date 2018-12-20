@@ -11,10 +11,11 @@ html, body {
 h2 {
     color: rgb(255, 217, 0);
     font-family: 'Bungee', cursive;
-    font-size: 40px;
+    font-size: 35px;
     padding-top: 20px;
     text-align: center;
     padding-bottom: 20px;
+    
 }
 
 .flex-grid {
@@ -36,6 +37,8 @@ h2 {
     border-radius: 25px;
     box-shadow: 0px 10px 25px rgba(10, 10, 0, 0.682);
     border: 2px solid black;
+    height: 550px;
+
 }
 
   #email {
@@ -45,12 +48,19 @@ h2 {
       font-weight: 600;
       display: block;
   }
+
+  a {
+    color: blue;
+  }
+
+  a:hover {
+    color: red;
+  }
   
   .container-text {
     padding: 5px;
-    width: 100%;
-    height: 100%;
     margin: 0 auto;
+    vertical-align: center;
   }
     
   #profile-img {
