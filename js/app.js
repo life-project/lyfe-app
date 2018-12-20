@@ -1,12 +1,8 @@
 'use strict';
-
+// list of elements to change the DOM
 var promptElement = document.getElementById('question-prompt');
 var eventPrompt = document.getElementById('event-prompt');
 var endGamePrompt = document.getElementById('end-game');
-// var totalSavingPrompt= document.getElementById('total-savings');
-// var totalLiaPrompt= document.getElementById('total-liabilities');
-// var totalNetWorthPrompt = document.getElementById('net-worth');
-
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 var newButton3Element = document.getElementById('input3');
@@ -16,13 +12,14 @@ var educationImageElement = document.getElementById('first-ti');
 var kidImageElement = document.getElementById('fifth-ti');
 var houseImageElement= document.getElementById('fourth-ti');
 var marriageImageElement= document.getElementById('third-ti');
-var randomIndex;
 var newLiabilitiesElement = document.getElementById('liabilities');
-var button3Flag = false;
-var i = 0;
-var choice = 0;
 
-function Question (prompt, description, button1, button2){
+var randomIndex; //used ID random event
+var button3Flag = false; // used to alternate between Payday  and Random event
+var i = 0; // Index for fixed question
+var choice = 0; //
+
+function Question (prompt, description, button1, button2){ //Used to construct an array of obejects for fixed questions
   this.prompt = prompt;
   this.description = description;
   this.button1 = button1;
@@ -31,6 +28,7 @@ function Question (prompt, description, button1, button2){
 }
 Question.allQuestions= [];
 
+// Creates new Instances of the Question object.
 new Question('Do you want to go to school?', 'You will need student loans in the amount of $80,000', 'Yes', 'No');
 new Question('Do you want to by a car?','','Yes','No');
 new Question('What type of car would you like to buy?', 'A new car will require a loan in the amount of $32,000. A used car will deduct $10,000 from savings.' , 'A new car', 'A used Car');
@@ -42,6 +40,7 @@ new Question('The economy took a downturn and you have been laid off. Do you wan
 new Question('Would you like to change jobs?', 'The new job will increase your pay by 10%, but will also reduce your savings by $20,000 to cover moving and the cost-of-living difference. Nothing changes if you stay where you are.', 'Yes', 'No');
 new Question('Dad passed away a few years ago and mom can\'t take care of herself anymore. Do you hire an in-home nurse or take care of her yourself?', 'Home care will reduce your savings by $200,000. Taking care of her on your own will require you to work part-time, reducing your salary.', 'Hire nurse', 'Do it myself');
 
+// array of Random Events and discriptions
 var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
   ['Congrats, you have a kid!', 'This will cost you $13,000 a year.'],
   ['You received an inheritance!', 'Sorry for your loss, but you gained $40,000.'],
@@ -56,9 +55,7 @@ var randomEventPrompt = [['You won the Lotto!', 'You gained $50,000.'],
 ];
 
 
-
-
-
+// The object of the user-- used to hold game information
 var Player = {
   name: nameElement,
   age : 18,
@@ -75,6 +72,7 @@ var Player = {
   netPlayerMoney:0
 };
 
+// Used to alter DOM to display fixed questions
 function questionFunc(){
   showQuestions();
   if(i<Question.allQuestions.length){
@@ -89,10 +87,41 @@ function questionFunc(){
 
 }
 
+//Generates a random number between 1-100
 function randomNumber(){
-  return Math.floor(Math.random()*(91));
+  return Math.floor(Math.random()*(100));
 }
 
+//  Used to alter elements for random event
+function randomEventRender(){
+  var randomNumberGen = randomNumber();
+  if (Player.kids===false || Player.age > 49){ //checks that player wants kids and is not to old
+    do {
+      randomNumberGen = randomNumber();
+    }
+    while( randomNumberGen >= 3 && randomNumberGen < 43 );
+  }
+  if(randomNumberGen>=0 && randomNumberGen <3 ) randomIndex=0; // changes probibility of  random event
+  if(randomNumberGen>=3 && randomNumberGen <43 ) randomIndex=1;
+  if(randomNumberGen>=43 && randomNumberGen <46 ) randomIndex=2;
+  if(randomNumberGen>=46 && randomNumberGen <50 ) randomIndex=3;
+  if(randomNumberGen>=50 && randomNumberGen <53 ) randomIndex=4;
+  if(randomNumberGen>=53 && randomNumberGen <61 ) randomIndex=5;
+  if(randomNumberGen>=61 && randomNumberGen <67 )randomIndex=6;
+  if(randomNumberGen>=67 && randomNumberGen <77 ) randomIndex=7;
+  if(randomNumberGen>=77 && randomNumberGen <80 ) randomIndex=8;
+  if(randomNumberGen>=80 && randomNumberGen <90 ) randomIndex=9;
+  if(randomNumberGen>=90 && randomNumberGen <100 ) randomIndex=10;
+  Player.age+=2;
+  randomLogic();
+  showEvents();
+  document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
+  document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
+  document.getElementById('input3').textContent = 'OK!';
+  updateStatus();
+}
+
+//Updates Player Stats
 function randomLogic(){
   var liElement;
   if (randomIndex===0) {
@@ -139,42 +168,8 @@ function randomLogic(){
   pictureLogic();
 }
 
-function randomEventRender(){
 
-  var randomNumberGen = randomNumber();
-
-
-  if (Player.kids===false || Player.age > 49){
-    do {
-      randomNumberGen = randomNumber();
-    }
-    while( randomNumberGen >= 3 && randomNumberGen < 43 );
-  }
-
-  if(randomNumberGen>=0 && randomNumberGen <3 ) randomIndex=0;
-  if(randomNumberGen>=3 && randomNumberGen <43 ) randomIndex=1;
-  if(randomNumberGen>=43 && randomNumberGen <46 ) randomIndex=2;
-  if(randomNumberGen>=46 && randomNumberGen <50 ) randomIndex=3;
-  if(randomNumberGen>=50 && randomNumberGen <53 ) randomIndex=4;
-  if(randomNumberGen>=53 && randomNumberGen <61 ) randomIndex=5;
-  if(randomNumberGen>=61 && randomNumberGen <67 )randomIndex=6;
-  if(randomNumberGen>=67 && randomNumberGen <77 ) randomIndex=7;
-  if(randomNumberGen>=77 && randomNumberGen <80 ) randomIndex=8;
-  if(randomNumberGen>=80 && randomNumberGen <90 ) randomIndex=9;
-  if(randomNumberGen>=90 && randomNumberGen <100 ) randomIndex=10;
-
-  console.log(randomNumberGen);
-  console.log(randomNumberGen);
-  Player.age+=2;
-  randomLogic();
-  showEvents();
-  document.getElementById('event').textContent = randomEventPrompt[randomIndex][0];
-  document.getElementById('event-description').textContent = randomEventPrompt[randomIndex][1];
-  document.getElementById('input3').textContent = 'OK!';
-  updateStatus();
-
-}
-
+//changes elements of player status
 function updateStatus(){
   document.getElementById('name-status').textContent = Player.name;
   document.getElementById('age-status').textContent = ('Age: '+ Player.age);
@@ -182,6 +177,7 @@ function updateStatus(){
   document.getElementById('money-status').textContent = ('Savings: $' + Player.savings);
 }
 
+//Checks for conditions to display images
 function pictureLogic(){
   if(i===0){
     if (Player.education) educationImageElement.src='images/graduation.png';
@@ -205,32 +201,31 @@ function pictureLogic(){
   }
 }
 
-
+// toggles html show class section  to show random events
 function showEvents(){
   promptElement.className = 'hide';
   eventPrompt.className = 'show';
   endGamePrompt.className = 'hide';
 }
-
+// toggles html show class section  to show questions
 function showQuestions(){
   promptElement.className = 'show';
   eventPrompt.className = 'hide';
   endGamePrompt.className = 'hide';
 }
+
+// toggles html show class section  to show end game stats
 function endGame(){
   Player.netPlayerMoney=Player.savings-Player.totalLia;
   document.getElementById('total-savings').textContent =Player.savings;
   document.getElementById('total-liabilities').textContent =Player.totalLia;
   document.getElementById('net-worth').textContent =Player.netPlayerMoney;
- 
-
   promptElement.className = 'hide';
   eventPrompt.className = 'hide';
   endGamePrompt.className = 'show';
-
-
 }
 
+// checks to see if user name was stored in  local storage from index html
 function checkforName(){
   Player.name = localStorage.getItem('username');
   while(!Player.name){
@@ -239,6 +234,7 @@ function checkforName(){
   }
 }
 
+//
 function payday(){
   showEvents();
   console.log('payday');
@@ -250,6 +246,8 @@ function payday(){
   updateStatus();
 }
 
+
+// Logic for question responses to alter player stats
 function logic(){
   var liElement;
   if (i===0){
@@ -347,6 +345,7 @@ function logic(){
   if(i===1 && Player.car===false)pictureLogic();
 }
 
+//callback function for 1st button that will show if  Questions are displayed
 function startChoice1(event){  //eslint-disable-line
   localStorage.setItem('user-game-play',JSON.stringify(Player));
   localStorage.setItem('user-question-indicator',i);
@@ -361,7 +360,7 @@ function startChoice1(event){  //eslint-disable-line
     i++;
   }
 }
-
+//callback function for 2nd button that will show if  Questions are displayed
 function startChoice2(event){ //eslint-disable-line
   localStorage.setItem('user-game-play',JSON.stringify(Player));
   localStorage.setItem('user-question-indicator',i);
@@ -370,9 +369,9 @@ function startChoice2(event){ //eslint-disable-line
   if(i===1)i++;
   randomEventRender();
   i++;
-
 }
 
+//callback function button that will show if  payday or random events are displayed
 function startChoice3(event){ //eslint-disable-line
   localStorage.setItem('user-game-play',JSON.stringify(Player));
   localStorage.setItem('user-question-indicator',i);
@@ -388,6 +387,9 @@ function startChoice3(event){ //eslint-disable-line
 
 checkforName();
 questionFunc();
+
+
+//event listeners
 
 newButton1Element.addEventListener('click', startChoice1);
 newButton2Element.addEventListener('click', startChoice2);
