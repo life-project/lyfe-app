@@ -149,3 +149,16 @@ h2 {
    #net-worth {
        font-weight: 800;
    }
+
+
+   #total-savings {
+       text-align: right;
+   }
+
+  #total-liabilities {
+    text-align: right;
+}
+
+#net-worth {
+    text-align: right;
+}
