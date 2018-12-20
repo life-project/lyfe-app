@@ -3,6 +3,10 @@
 var promptElement = document.getElementById('question-prompt');
 var eventPrompt = document.getElementById('event-prompt');
 var endGamePrompt = document.getElementById('end-game');
+// var totalSavingPrompt= document.getElementById('total-savings');
+// var totalLiaPrompt= document.getElementById('total-liabilities');
+// var totalNetWorthPrompt = document.getElementById('net-worth');
+
 var newButton1Element = document.getElementById('input1');
 var newButton2Element = document.getElementById('input2');
 var newButton3Element = document.getElementById('input3');
@@ -67,7 +71,8 @@ var Player = {
   kidsNumber : 0,
   house : false,
   marriage : false,
-
+  totalLia:0,
+  netPlayerMoney:0
 };
 
 function questionFunc(){
@@ -96,6 +101,7 @@ function randomLogic(){
   if (randomIndex===1 && Player.kids===true) { // kids
     liElement =document.createElement('li');
     liElement.textContent = 'Kid: $13,000 /yr ';
+    Player.totalLia+=13000;
     newLiabilitiesElement.appendChild(liElement);
     Player.kids = true;
     Player.kidsNumber++;
@@ -130,6 +136,7 @@ function randomLogic(){
   if (randomIndex===10){ // casino really bad day
     Player.savings-=1200;
   }
+  pictureLogic();
 }
 
 function randomEventRender(){
@@ -211,6 +218,12 @@ function showQuestions(){
   endGamePrompt.className = 'hide';
 }
 function endGame(){
+  Player.netPlayerMoney=Player.savings-Player.totalLia;
+  document.getElementById('total-savings').textContent =Player.savings;
+  document.getElementById('total-liabilities').textContent =Player.totalLia;
+  document.getElementById('net-worth').textContent =Player.netPlayerMoney;
+ 
+
   promptElement.className = 'hide';
   eventPrompt.className = 'hide';
   endGamePrompt.className = 'show';
@@ -245,6 +258,7 @@ function logic(){
       Player.education = true;
       liElement = document.createElement('li');
       liElement.textContent = 'Student Loans: $80,000';
+      Player.totalLia+=80000;
       newLiabilitiesElement.appendChild(liElement);
     }
     else{
@@ -263,6 +277,7 @@ function logic(){
       liElement = document.createElement('li');
       liElement.textContent = 'Car Loan: $32,000';
       newLiabilitiesElement.appendChild(liElement);
+      Player.totalLia+=32000;
     }else{ //used
       Player.savings-=10000;
     }
@@ -280,6 +295,7 @@ function logic(){
       liElement = document.createElement('li');
       liElement.textContent = 'Mortgage: $500,000';
       newLiabilitiesElement.appendChild(liElement);
+      Player.totalLia+= 500000;
       Player.house = true;
     }
   }
@@ -302,6 +318,7 @@ function logic(){
       liElement = document.createElement('li');
       liElement.textContent = 'Continuing Education: $15,000';
       newLiabilitiesElement.appendChild(liElement);
+      Player.totalLia+=15000;
     }
     if (choice===2){
       Player.salary = Player.salary*0.5;

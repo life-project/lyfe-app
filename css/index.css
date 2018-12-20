@@ -77,3 +77,8 @@ a {
     color: white;
 }
 
+#name {
+    font-family: 'Bungee', cursive;
+    color: red;
+    text-align: center;
+}
