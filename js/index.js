@@ -8,6 +8,7 @@ function addName(event){
   nameInput = event.target.username.value;
   console.log('name input: ' + nameInput);
   localStorage.setItem('username', nameInput);
+  window.location.href='game.html';
 }
 
 
